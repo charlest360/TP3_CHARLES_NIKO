@@ -5,6 +5,10 @@ import DTO.UpdateDogDTO;
 
 public class Dog implements IDog {  
 	
+	public final static int MINIMUM_CHARS_IN_ID = 1;
+	public final static int MINIMUM_CHARS_IN_NAME = 2;
+	public final static int MINIMUM_CHARS_IN_BREED = 3;
+	
 	private int id;
 	private String name;
 	private String breed;  // Idéalement faire une classe Breed (préférer à une enum)

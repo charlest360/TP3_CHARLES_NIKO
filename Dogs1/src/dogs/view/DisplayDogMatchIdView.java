@@ -10,13 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import DTO.DisplayClientDTO;
 import DTO.DisplayDogDTO;
-import DTO.UpdateClientDTO;
 import DTO.UpdateDogDTO;
-import dogs.controller.IController;
 import dogs.controller.IDogController;
-import dogs.model.IDog;
 
 public class DisplayDogMatchIdView extends View implements ActionListener{
 	
@@ -115,8 +111,7 @@ public class DisplayDogMatchIdView extends View implements ActionListener{
 	
 	private void addDogTextfields(JPanel panel) {
 		this.dogName = new JTextField(this.dogToDisplay.NAME);
-		this.dogBreed = new JTextField(this.dogToDisplay.BREED);
-		
+		this.dogBreed = new JTextField(this.dogToDisplay.BREED);		
 		
 		panel.add(this.dogName);
 		panel.add(this.dogBreed);

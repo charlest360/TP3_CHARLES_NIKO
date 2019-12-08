@@ -25,7 +25,6 @@ public class ClientController extends Controller implements IClientController {
 	private final static String PHONE_ERROR = "Veuillez entrer un numéro de téléphone valide";
 	private final static String NO_ID_MATCH_ERROR = "Aucun id de client ne correspond à celui recherché.";
 	private final static String NO_NAME_MATCH_ERROR = "Aucun nom de famille de client ne correspond à celui recherché.";
-	
 	private final static String CLIENT_ADDED_MESSAGE = "Client ajouté avec succès!";
 	private final static String CLIENT_EDITED_MESSAGE = "Client édité avec succès!";
 	
@@ -97,13 +96,13 @@ public class ClientController extends Controller implements IClientController {
 	private boolean validateFormInput(IClient client) {
 		boolean isClientValid = false;
 		
-		if(client.getFirstName().length() <2) {
+		if(client.getFirstName().length() <Client.MINIMUM_CHARS_IN_FIRST_NAME) {
 			this.showClientErrorView(FIRST_NAME_ERROR);
 		}
-		else if(client.getLastName().length() <2) {
+		else if(client.getLastName().length() <Client.MINIMUM_CHARS_IN_LAST_NAME) {
 			this.showClientErrorView(LAST_NAME_ERROR);
 		}
-		else if(client.getPhoneNumber().length() !=12) {
+		else if(client.getPhoneNumber().length() !=Client.NUMBER_CHARS_IN_PHONE_NUMBER) {
 			this.showClientErrorView(PHONE_ERROR);
 		}
 		else {

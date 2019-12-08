@@ -64,9 +64,7 @@ public class WelcomeView extends View implements ActionListener {
         
 	}
 	
-	public void display() {
-		this.setVisible(true);
-	}
+	
 	
 	private void setUpComponents() {
 		this.setUpWelcomePanel();
@@ -155,16 +153,24 @@ public class WelcomeView extends View implements ActionListener {
 				this.controller.addClient();
 				break;
 			
+				
 			case SEARCH_CLIENT_BY_ID_ACTION:
-				this.controller.searchClientById(this.idClient.getText());
+				if (this.idClient.getText().length()>0) {
+					this.controller.searchClientById(this.idClient.getText());
+				}
 				break;
 				
+			
 			case SEARCH_CLIENT_BY_NAME_ACTION:
-				this.controller.searchClientByName(this.nomClient.getText());
+				if (this.nomClient.getText().length()>0) {
+					this.controller.searchClientByName(this.nomClient.getText());
+				}
 				break;
 				
 			case SEARCH_DOG_BY_ID_ACTION:
-				this.controller.searchDogById(this.idDog.getText());
+				if (this.idDog.getText().length()>0) {
+					this.controller.searchDogById(this.idDog.getText());
+				}
 				break;
 		}
 		

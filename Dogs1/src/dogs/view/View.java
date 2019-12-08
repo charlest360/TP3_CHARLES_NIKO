@@ -10,7 +10,6 @@ import dogs.controller.IController;
 
 public abstract class View extends JFrame implements IView {
 	
-	@SuppressWarnings("unused")
 	protected IController controller;
 	
 	

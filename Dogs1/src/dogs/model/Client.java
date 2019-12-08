@@ -4,6 +4,12 @@ import DTO.CreateClientDTO;
 import DTO.UpdateClientDTO;
 
 public class Client implements IClient {
+	
+	public final static int MINIMUM_CHARS_IN_ID = 1;
+	public final static int MINIMUM_CHARS_IN_FIRST_NAME = 2;
+	public final static int MINIMUM_CHARS_IN_LAST_NAME = 2;
+	public final static int NUMBER_CHARS_IN_PHONE_NUMBER = 12;
+	
 	private static final int DEFAULT_CLIENT_NUMBER_VALUE = 1;
 	private static int currentClientNumber = DEFAULT_CLIENT_NUMBER_VALUE;
 	

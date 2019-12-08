@@ -128,10 +128,10 @@ public class DogController extends Controller implements IDogController {
 		
 		boolean isDogValid = false;
 		
-		if(dog.getName().length() <2) {
+		if(dog.getName().length() <Dog.MINIMUM_CHARS_IN_NAME) {
 			this.DogErrorMessageView(NAME_ERROR);
 		}
-		else if(dog.getBreed().length() <2) {
+		else if(dog.getBreed().length() <Dog.MINIMUM_CHARS_IN_BREED) {
 			this.DogErrorMessageView(BREED_ERROR);
 		}
 		
