@@ -13,11 +13,12 @@ public class AddClientConfirmationView extends View{
 	
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
 	private static final String TITLE = "Confirmation";
-	private static final String CONFIRMATION_MESSAGE = "Client ajouté avec succès!";
+	private final String CONFIRMATION_MESSAGE ;
 	
-	public AddClientConfirmationView(IClientController controller) {
+	public AddClientConfirmationView(IClientController controller, String message) {
 		super(controller, TITLE, DEFAULT_SIZE);
 		
+		this.CONFIRMATION_MESSAGE = message;
 		this.setUpComponents();
 	}
 

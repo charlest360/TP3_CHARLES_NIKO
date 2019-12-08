@@ -4,6 +4,7 @@ import java.util.List;
 
 import DTO.CreateClientDTO;
 import DTO.DisplayClientDTO;
+import DTO.UpdateClientDTO;
 
 public interface IClientController extends IController {
 
@@ -22,6 +23,8 @@ public interface IClientController extends IController {
 	public void addClient(CreateClientDTO dto);
 
 	public void showClientMatchId(String id);
+
+	public void SaveClientChanges(UpdateClientDTO dto);
 	
 	
 	

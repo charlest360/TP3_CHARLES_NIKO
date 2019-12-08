@@ -6,4 +6,8 @@ public interface IClient {
 	public String getFirstName();
 	public String getLastName();
 	public String getPhoneNumber();
+	
+	public void setFirstName(String firstName);
+	public void setLastName(String lastName);
+	public void setPhoneNumber(String phoneNumber);
 }

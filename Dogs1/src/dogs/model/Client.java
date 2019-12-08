@@ -1,6 +1,7 @@
 package dogs.model;
 
 import DTO.CreateClientDTO;
+import DTO.UpdateClientDTO;
 
 public class Client implements IClient {
 	private static final int DEFAULT_CLIENT_NUMBER_VALUE = 1;
@@ -31,6 +32,10 @@ public class Client implements IClient {
 		this(client.FIRST_NAME, client.LAST_NAME, client.PHONE_NUMBER);
 	}
 	
+	public Client(UpdateClientDTO client) {
+		this(client.FIRST_NAME, client.LAST_NAME, client.PHONE_NUMBER,client.ID);
+	}
+
 	public int getId() {
 		return this.id;
 	}
@@ -39,11 +44,22 @@ public class Client implements IClient {
 		return this.firstName;
 	}
 	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 	public String getLastName() {
 		return this.lastName;
 	}
 	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
 	public String getPhoneNumber() {
 		return this.phoneNumber;
+	}
+	
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 }

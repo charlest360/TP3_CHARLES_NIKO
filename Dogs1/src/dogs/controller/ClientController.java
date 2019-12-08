@@ -6,6 +6,8 @@ import java.util.List;
 
 import DTO.CreateClientDTO;
 import DTO.DisplayClientDTO;
+import DTO.IClientModificationDTO;
+import DTO.UpdateClientDTO;
 import dogs.comparator.ClientNameComparator;
 import dogs.comparator.ClientPhoneComparator;
 import dogs.model.Client;
@@ -24,6 +26,10 @@ public class ClientController extends Controller implements IClientController {
 	private final static String LAST_NAME_ERROR = "Veuillez entrer un nom de famille valide";
 	private final static String PHONE_ERROR = "Veuillez entrer un numéro de téléphone valide";
 	private final static String NO_ID_MATCH_ERROR = "Aucun id de client ne correspond à celui recherché.";
+	
+	private final static String CLIENT_ADDED_MESSAGE = "Client ajouté avec succès!";
+	private final static String CLIENT_EDITED_MESSAGE = "Client édité avec succès!";
+	
 	
 	private ClientRepository clientRepository;
 	
@@ -44,12 +50,14 @@ public class ClientController extends Controller implements IClientController {
 	}
 	
 	public void addClient(CreateClientDTO dto) {
-		this.validateFormInput(dto);
+		
+		IClient client = new Client(dto);
+		
+		if(this.validateFormInput(client)) {
+			this.clientRepository.addClient(client);	
+			this.showClientConfirmationView(CLIENT_ADDED_MESSAGE);
+		}
 	}
-	
-	/*public void addListener(IDogListener listener) {
-        this.repository.addListener(listener);
-    }*/
 	
 	public List<DisplayClientDTO> getClientList() { 
 		List<DisplayClientDTO> list = new ArrayList<DisplayClientDTO>();
@@ -77,9 +85,8 @@ public class ClientController extends Controller implements IClientController {
 		return list;
 	}
 
-	
-	public void showAddClientConfirmationView() {
-		super.showView(new AddClientConfirmationView(this));
+	public void showClientConfirmationView(String message) {
+		super.showView(new AddClientConfirmationView(this,message));
 		
 	}
 	
@@ -88,22 +95,22 @@ public class ClientController extends Controller implements IClientController {
 		
 	}
 
-	private void validateFormInput(CreateClientDTO clientDTO) {
+	private boolean validateFormInput(IClient client) {
+		boolean isClientValid = false;
 		
-		if(clientDTO.FIRST_NAME.length() <2) {
+		if(client.getFirstName().length() <2) {
 			this.showClientErrorView(FIRST_NAME_ERROR);
 		}
-		else if(clientDTO.LAST_NAME.length() <2) {
+		else if(client.getLastName().length() <2) {
 			this.showClientErrorView(LAST_NAME_ERROR);
 		}
-		else if(clientDTO.PHONE_NUMBER.length() <12) {
+		else if(client.getPhoneNumber().length() !=12) {
 			this.showClientErrorView(PHONE_ERROR);
 		}
 		else {
-			IClient client = new Client(clientDTO);
-			this.clientRepository.addClient(client);	
-			this.showAddClientConfirmationView();
+			isClientValid =true;	
 		}
+		return isClientValid;
 		
 	}
 
@@ -118,6 +125,22 @@ public class ClientController extends Controller implements IClientController {
 		}
 		else {
 			this.showClientErrorView(NO_ID_MATCH_ERROR);
+		}
+	}
+
+	@Override
+	public void SaveClientChanges(UpdateClientDTO dto) {
+		
+		IClient client = new Client(dto);
+		
+		if(this.validateFormInput(client)) {
+			IClient clientToEdit = this.clientRepository.getClientList().get(client.getId());
+			
+			clientToEdit.setFirstName(dto.FIRST_NAME);
+			clientToEdit.setLastName(dto.LAST_NAME);
+			clientToEdit.setPhoneNumber(dto.PHONE_NUMBER);
+			
+			this.showClientConfirmationView(CLIENT_EDITED_MESSAGE);
 		}
 	}
 	

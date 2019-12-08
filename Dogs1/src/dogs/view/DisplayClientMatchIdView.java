@@ -3,28 +3,39 @@ package dogs.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import DTO.DisplayClientDTO;
+import DTO.UpdateClientDTO;
 import dogs.controller.IClientController;
 
-public class DisplayClientMatchIdView extends View {
+public class DisplayClientMatchIdView extends View implements ActionListener{
 	
 	private static final String VIEW_TITLE = "Voir un client selon son Id";
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
 	
+	
 	private static final int NB_OF_ROWS = 0;
 	private static final int NB_OF_COLLUMNS = 4;
-	
+	private static final String EDIT_CLIENT_BUTTON_TEXT = "Sauvegarder";
+	private static final String EDIT_CLIENT_ACTION = "Éditer Client";
 	private static final String ID_LABEL = "Id";
 	private static final String LAST_NAME_LABEL = "Nom";
 	private static final String FIRST_NAME_LABEL = "Prénom";
 	private static final String PHONE_NUMBER_LABEL = "Téléphone";
 	
-	
 	private IClientController controller ;
 	private DisplayClientDTO clientToDisplay;
+	
+	private JTextField clientFirstName; 
+	private JTextField clientLastName;
+	private JTextField clientPhoneNumber;
+	
 	
 	public DisplayClientMatchIdView(IClientController controller,DisplayClientDTO clientToDisplay) {
 		super(controller, VIEW_TITLE, DEFAULT_SIZE);
@@ -46,18 +57,33 @@ public class DisplayClientMatchIdView extends View {
 		clientFormPanel.setLayout(new BorderLayout());
 		
 		this.setUpNorthPanel();
-		
+		this.setUpSouthPanel();
 	}
 
 	
 	private void setUpNorthPanel() {
 		JPanel panel = new JPanel();
-		
 		panel.setLayout(new GridLayout(NB_OF_ROWS,NB_OF_COLLUMNS));
 		this.addClientLabels(panel);
-		this.displayClients(panel);
+		this.addClientTextfields(panel);
+		
 		this.add(panel,BorderLayout.NORTH);
 		
+	}
+	
+	private void setUpSouthPanel() {
+		JPanel panel = new JPanel();
+	
+		this.addSaveButton(panel);
+		
+		this.add(panel,BorderLayout.SOUTH);
+	}
+	
+	private void addSaveButton(JPanel panel) {
+		JButton button = new JButton(EDIT_CLIENT_BUTTON_TEXT);
+		button.addActionListener(this);
+		button.setActionCommand(EDIT_CLIENT_ACTION);
+		panel.add(button,BorderLayout.CENTER);
 	}
 	
 	private void addClientLabels(JPanel panel) {
@@ -65,14 +91,29 @@ public class DisplayClientMatchIdView extends View {
 		super.addLabel(panel, FIRST_NAME_LABEL);
 		super.addLabel(panel, LAST_NAME_LABEL);
 		super.addLabel(panel, PHONE_NUMBER_LABEL);
+		super.addLabel(panel, Integer.toString(this.clientToDisplay.ID));
 	}
 	
-	
-	void displayClients(JPanel panel) {
-			super.addLabel(panel, Integer.toString(this.clientToDisplay.ID));
-			super.addLabel(panel, this.clientToDisplay.FIRST_NAME);
-			super.addLabel(panel, this.clientToDisplay.LAST_NAME);
-			super.addLabel(panel, this.clientToDisplay.PHONE_NUMBER);
+	private void addClientTextfields(JPanel panel) {
+		this.clientFirstName = new JTextField(this.clientToDisplay.FIRST_NAME);
+		this.clientLastName = new JTextField(this.clientToDisplay.LAST_NAME);
+		this.clientPhoneNumber = new JTextField(this.clientToDisplay.PHONE_NUMBER);
+		
+		panel.add(this.clientFirstName);
+		panel.add(this.clientLastName);
+		panel.add(this.clientPhoneNumber);
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		
+		if(arg0.getActionCommand()== EDIT_CLIENT_ACTION) {
+			UpdateClientDTO dto = new UpdateClientDTO(this.clientToDisplay.ID,this.clientFirstName.getText(),this.clientLastName.getText(),this.clientPhoneNumber.getText());
+			this.controller.SaveClientChanges(dto);
 		}
+		
+	}
+	
 }
 
