@@ -8,6 +8,9 @@ public interface IWelcomeController extends IController {
 
 	void viewDogs();
 
-	void viewClients();
+	void viewClientsByName();
+	
+	void viewClientsByPhone();
+	
 	
 }

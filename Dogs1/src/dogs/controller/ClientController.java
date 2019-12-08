@@ -11,6 +11,7 @@ import dogs.comparator.ClientPhoneComparator;
 import dogs.model.Client;
 import dogs.model.ClientRepository;
 import dogs.model.IClient;
+import dogs.view.DisplayClientByPhoneView;
 import dogs.view.DisplayClientView;
 
 public class ClientController extends Controller implements IClientController {
@@ -21,8 +22,12 @@ public class ClientController extends Controller implements IClientController {
 		this.clientRepository = clientRepository;
 	}
 	
-	public void showDisplayClientsView() {
+	public void showDisplayClientByNameView() {
 		super.showView(new DisplayClientView(this));
+	}
+	
+	public void showDisplayClientByPhoneView() {
+		super.showView(new DisplayClientByPhoneView(this));
 	}
 	
 	/*public void showAddClientsView() {

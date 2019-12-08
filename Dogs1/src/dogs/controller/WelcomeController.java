@@ -29,8 +29,13 @@ public class WelcomeController extends Controller implements IWelcomeController 
 	}
 
 	@Override
-	public void viewClients() {
-		this.clientController.showDisplayClientsView();
+	public void viewClientsByName() {
+		this.clientController.showDisplayClientByNameView();
+		
+	}
+	
+	public void viewClientsByPhone() {
+		this.clientController.showDisplayClientByPhoneView();
 		
 	}
 

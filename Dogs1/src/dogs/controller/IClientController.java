@@ -8,7 +8,9 @@ public interface IClientController extends IController {
 
 	public List<DisplayClientDTO> getClientList();
 	
-	public void showDisplayClientsView();
+	public void showDisplayClientByNameView();
+	
+	public void showDisplayClientByPhoneView();
 
 	public List<DisplayClientDTO> getClientListByName();
 	

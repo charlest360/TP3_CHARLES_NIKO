@@ -24,14 +24,16 @@ public class WelcomeView extends View implements ActionListener {
 	
 	private static final String VIEW_DOGS_ACTION = "View Dogs";
 	private static final String ADD_DOG_ACTION = "Add dog";
-	private static final String VIEW_CLIENTS_ACTION = "View Clients";
+	private static final String VIEW_CLIENTS_BY_NAME_ACTION = "View Clients By Name";
+	private static final String VIEW_CLIENTS_BY_PHONE_ACTION = "View Clients By Phone";
 	private static final String ADD_CLIENT_ACTION = "Add client";
 	
 	private static final String WELCOME_PICTURE = "../resource/dog.jpg";
 	
 	private static final String VIEW_DOGS_BUTTON_TEXT = "Afficher les chiens";
 	private static final String ADD_DOG_BUTTON_TEXT = "Inscrire un chien";
-	private static final String VIEW_CLIENTS_BUTTON_TEXT = "Afficher les clients";
+	private static final String VIEW_CLIENTS_BY_NAME_BUTTON_TEXT = "Afficher les clients triés par Nom";
+	private static final String VIEW_CLIENTS_BY_PHONE_BUTTON_TEXT = "Afficher les clients triés par Téléphone";
 	private static final String ADD_CLIENT_BUTTON_TEXT = "Inscrire un client";
 	
 	
@@ -82,7 +84,8 @@ public class WelcomeView extends View implements ActionListener {
 		
 		addButton(actionPanel,VIEW_DOGS_BUTTON_TEXT,VIEW_DOGS_ACTION);
 		addButton(actionPanel,ADD_DOG_BUTTON_TEXT,ADD_DOG_ACTION);
-		addButton(actionPanel,VIEW_CLIENTS_BUTTON_TEXT,VIEW_CLIENTS_ACTION);
+		addButton(actionPanel,VIEW_CLIENTS_BY_NAME_BUTTON_TEXT,VIEW_CLIENTS_BY_NAME_ACTION);
+		addButton(actionPanel,VIEW_CLIENTS_BY_PHONE_BUTTON_TEXT,VIEW_CLIENTS_BY_PHONE_ACTION);
 		addButton(actionPanel,ADD_CLIENT_BUTTON_TEXT,ADD_CLIENT_ACTION);
 	
 	}
@@ -108,13 +111,13 @@ public class WelcomeView extends View implements ActionListener {
 				this.controller.addDog();
 				break;
 				
-			case VIEW_CLIENTS_ACTION:
-				this.controller.viewClients();
+			case VIEW_CLIENTS_BY_NAME_ACTION:
+				this.controller.viewClientsByName();
 				break;
 				
-			/*case ADD_CLIENT_ACTION:
-				this.controller.addDog();
-				break;*/
+			case VIEW_CLIENTS_BY_PHONE_ACTION:
+				this.controller.viewClientsByPhone();
+				break;
 		  
 		}
 		
