@@ -11,6 +11,8 @@ public interface IWelcomeController extends IController {
 	void viewClientsByName();
 	
 	void viewClientsByPhone();
+
+	void addClient();
 	
 	
 }

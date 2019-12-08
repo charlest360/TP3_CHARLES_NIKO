@@ -11,11 +11,17 @@ import dogs.comparator.ClientPhoneComparator;
 import dogs.model.Client;
 import dogs.model.ClientRepository;
 import dogs.model.IClient;
+import dogs.view.AddClientConfirmationView;
+import dogs.view.AddClientErrorView;
+import dogs.view.AddClientView;
 import dogs.view.DisplayClientByPhoneView;
 import dogs.view.DisplayClientView;
 
 public class ClientController extends Controller implements IClientController {
-
+	
+	private final static String FIRST_NAME_ERROR = "Veuillez entrer un prénom valide";
+	private final static String LAST_NAME_ERROR = "Veuillez entrer un nom de famille valide";
+	private final static String PHONE_ERROR = "Veuillez entrer un numéro de téléphone valide";
 	private ClientRepository clientRepository;
 	
 	public ClientController(ClientRepository clientRepository) {
@@ -30,13 +36,12 @@ public class ClientController extends Controller implements IClientController {
 		super.showView(new DisplayClientByPhoneView(this));
 	}
 	
-	/*public void showAddClientsView() {
-		super.showView(new AddClientsView(this));
-	}*/
+	public void showAddClientsView() {
+		super.showView(new AddClientView(this));
+	}
 	
 	public void addClient(CreateClientDTO dto) {
-		IClient client = new Client(dto);
-		this.clientRepository.addClient(client);	
+		this.validateFormInput(dto);
 	}
 	
 	/*public void addListener(IDogListener listener) {
@@ -67,6 +72,36 @@ public class ClientController extends Controller implements IClientController {
 		Collections.sort(list,new ClientPhoneComparator());
 		
 		return list;
+	}
+
+	
+	public void showAddClientConfirmationView() {
+		super.showView(new AddClientConfirmationView(this));
+		
+	}
+	
+	private void showAddClientErrorView(String errorMessage) {
+		super.showView(new AddClientErrorView(this,errorMessage));
+		
+	}
+
+	private void validateFormInput(CreateClientDTO clientDTO) {
+		
+		if(clientDTO.FIRST_NAME.length() <2) {
+			this.showAddClientErrorView(FIRST_NAME_ERROR);
+		}
+		else if(clientDTO.LAST_NAME.length() <2) {
+			this.showAddClientErrorView(LAST_NAME_ERROR);
+		}
+		else if(clientDTO.PHONE_NUMBER.length() <12) {
+			this.showAddClientErrorView(PHONE_ERROR);
+		}
+		else {
+			IClient client = new Client(clientDTO);
+			this.clientRepository.addClient(client);	
+			this.showAddClientConfirmationView();
+		}
+		
 	}
 	
 	

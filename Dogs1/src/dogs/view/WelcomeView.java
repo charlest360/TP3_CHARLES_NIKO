@@ -3,6 +3,7 @@ package dogs.view;
 import java.awt.BorderLayout;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,6 +22,8 @@ public class WelcomeView extends View implements ActionListener {
 	private static final String VIEW_TITLE = "Page d'accueil";
 	private static final String WELCOME_MESSAGE = "Bienvenue !";
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
+	private static final int NB_OF_COLLUMNS = 2;
+	private static final int NB_OF_ROWS = 0;
 	
 	private static final String VIEW_DOGS_ACTION = "View Dogs";
 	private static final String ADD_DOG_ACTION = "Add dog";
@@ -82,6 +85,8 @@ public class WelcomeView extends View implements ActionListener {
 		JPanel actionPanel = new JPanel();
 		this.add(actionPanel,BorderLayout.SOUTH);
 		
+		actionPanel.setLayout(new GridLayout(NB_OF_ROWS,NB_OF_COLLUMNS));
+		
 		addButton(actionPanel,VIEW_DOGS_BUTTON_TEXT,VIEW_DOGS_ACTION);
 		addButton(actionPanel,ADD_DOG_BUTTON_TEXT,ADD_DOG_ACTION);
 		addButton(actionPanel,VIEW_CLIENTS_BY_NAME_BUTTON_TEXT,VIEW_CLIENTS_BY_NAME_ACTION);
@@ -117,6 +122,10 @@ public class WelcomeView extends View implements ActionListener {
 				
 			case VIEW_CLIENTS_BY_PHONE_ACTION:
 				this.controller.viewClientsByPhone();
+				break;
+			
+			case ADD_CLIENT_ACTION:
+				this.controller.addClient();
 				break;
 		  
 		}

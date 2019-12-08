@@ -67,15 +67,17 @@ public class AddDogView extends View implements ActionListener{
 	
 	private void addInscriptionDetails(JPanel panel) {
 		
-		this.nameText = new JTextField();
-		this.breedText = new JTextField();
-		
 		super.addLabel(panel, NAME_LABEL);
 		super.addLabel(panel, BREED_LABEL);
 		
-		panel.add(this.nameText);
-		panel.add(this.breedText);
+		this.addJTextField(this.nameText, panel);
+		this.addJTextField(this.breedText, panel);
 		
+	}
+	
+	private void addJTextField(JTextField textField,JPanel panel) {
+		textField = new JTextField();
+		panel.add(textField);
 	}
 	
 	private void setUpSouthPanel() {

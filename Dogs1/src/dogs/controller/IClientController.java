@@ -2,6 +2,7 @@ package dogs.controller;
 
 import java.util.List;
 
+import DTO.CreateClientDTO;
 import DTO.DisplayClientDTO;
 
 public interface IClientController extends IController {
@@ -11,8 +12,15 @@ public interface IClientController extends IController {
 	public void showDisplayClientByNameView();
 	
 	public void showDisplayClientByPhoneView();
+	
+	public void showAddClientsView();
 
 	public List<DisplayClientDTO> getClientListByName();
 	
 	public List<DisplayClientDTO> getClientListByPhoneNumber();
+
+	public void addClient(CreateClientDTO dto);
+	
+	
+	
 }

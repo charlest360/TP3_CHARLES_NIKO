@@ -39,4 +39,10 @@ public class WelcomeController extends Controller implements IWelcomeController 
 		
 	}
 
+	@Override
+	public void addClient() {
+		this.clientController.showAddClientsView();
+		
+	}
+
 }
