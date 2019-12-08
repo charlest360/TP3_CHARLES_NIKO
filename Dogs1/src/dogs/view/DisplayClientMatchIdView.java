@@ -4,9 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -14,7 +11,7 @@ import DTO.DisplayClientDTO;
 import DTO.UpdateClientDTO;
 import dogs.controller.IClientController;
 
-public class DisplayClientMatchIdView extends View implements ActionListener{
+public class DisplayClientMatchIdView extends DynamicView {
 	
 	private static final String VIEW_TITLE = "Voir un client selon son Id";
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
@@ -73,17 +70,10 @@ public class DisplayClientMatchIdView extends View implements ActionListener{
 	
 	private void setUpSouthPanel() {
 		JPanel panel = new JPanel();
-	
-		this.addSaveButton(panel);
+		
+		super.addButton(panel, EDIT_CLIENT_BUTTON_TEXT, EDIT_CLIENT_ACTION,BorderLayout.CENTER);
 		
 		this.add(panel,BorderLayout.SOUTH);
-	}
-	
-	private void addSaveButton(JPanel panel) {
-		JButton button = new JButton(EDIT_CLIENT_BUTTON_TEXT);
-		button.addActionListener(this);
-		button.setActionCommand(EDIT_CLIENT_ACTION);
-		panel.add(button,BorderLayout.CENTER);
 	}
 	
 	private void addClientLabels(JPanel panel) {

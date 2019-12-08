@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -15,7 +13,7 @@ import dogs.controller.IDogController;
 
 
 
-public class AddDogView extends View implements ActionListener{
+public class AddDogView extends DynamicView{
 	private static final String VIEW_TITLE = "Ajout de chiens";
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
 	
@@ -81,22 +79,13 @@ public class AddDogView extends View implements ActionListener{
 		panel.add(ownerIdText);
 	}
 	
-	
-	
 	private void setUpSouthPanel() {
 		JPanel panel = new JPanel();
-	
-		this.addButton(panel);
-		
+
+		super.addButton(panel, INSCRIPTION_BUTTON_TEXT, ADD_DOG_ACTION, BorderLayout.CENTER);
 		this.add(panel,BorderLayout.SOUTH);
 	}
-	
-	private void addButton(JPanel panel) {
-		JButton button = new JButton(INSCRIPTION_BUTTON_TEXT);
-		button.addActionListener(this);
-		button.setActionCommand(ADD_DOG_ACTION);
-		panel.add(button,BorderLayout.CENTER);
-	}
+
 	
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getActionCommand() == ADD_DOG_ACTION) {

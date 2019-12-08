@@ -1,6 +1,7 @@
 package dogs.model;
 
 import DTO.CreateClientDTO;
+
 import DTO.UpdateClientDTO;
 
 public class Client implements IClient {

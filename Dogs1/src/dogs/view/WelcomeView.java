@@ -5,10 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,7 +15,7 @@ import javax.swing.SwingConstants;
 import dogs.controller.IWelcomeController;
 import util.image.ImageUtil;
 
-public class WelcomeView extends View implements ActionListener {  
+public class WelcomeView extends DynamicView  {  
 	
 	//Constantes autres
 	private static final String VIEW_TITLE = "Page d'accueil";
@@ -106,28 +103,22 @@ public class WelcomeView extends View implements ActionListener {
 		this.idDog = new JTextField();
 		
 		actionPanel.add(this.idClient);
-		this.addButton(actionPanel,SEARCH_CLIENT_MATCH_ID_BUTTON_TEXT,SEARCH_CLIENT_BY_ID_ACTION);
-		
+		super.addButton(actionPanel,SEARCH_CLIENT_MATCH_ID_BUTTON_TEXT,SEARCH_CLIENT_BY_ID_ACTION);
 		actionPanel.add(this.nomClient);
-		this.addButton(actionPanel,SEARCH_CLIENT_MATCH_NAME_BUTTON_TEXT,SEARCH_CLIENT_BY_NAME_ACTION);
+		super.addButton(actionPanel,SEARCH_CLIENT_MATCH_NAME_BUTTON_TEXT,SEARCH_CLIENT_BY_NAME_ACTION);
 		
 		actionPanel.add(this.idDog);
-		this.addButton(actionPanel,SEARCH_DOG_MATCH_ID_BUTTON_TEXT,SEARCH_DOG_BY_ID_ACTION);
+		super.addButton(actionPanel,SEARCH_DOG_MATCH_ID_BUTTON_TEXT,SEARCH_DOG_BY_ID_ACTION);
 		
-		this.addButton(actionPanel,VIEW_CLIENTS_BY_NAME_BUTTON_TEXT,VIEW_CLIENTS_BY_NAME_ACTION);
-		this.addButton(actionPanel,VIEW_CLIENTS_BY_PHONE_BUTTON_TEXT,VIEW_CLIENTS_BY_PHONE_ACTION);
+		super.addButton(actionPanel,VIEW_CLIENTS_BY_NAME_BUTTON_TEXT,VIEW_CLIENTS_BY_NAME_ACTION);
+		super.addButton(actionPanel,VIEW_CLIENTS_BY_PHONE_BUTTON_TEXT,VIEW_CLIENTS_BY_PHONE_ACTION);
 		
-		this.addButton(actionPanel,VIEW_DOGS_BUTTON_TEXT,VIEW_DOGS_ACTION);
-		this.addButton(actionPanel,ADD_DOG_BUTTON_TEXT,ADD_DOG_ACTION);
-		this.addButton(actionPanel,ADD_CLIENT_BUTTON_TEXT,ADD_CLIENT_ACTION);
+		super.addButton(actionPanel,VIEW_DOGS_BUTTON_TEXT,VIEW_DOGS_ACTION);
+		super.addButton(actionPanel,ADD_DOG_BUTTON_TEXT,ADD_DOG_ACTION);
+		super.addButton(actionPanel,ADD_CLIENT_BUTTON_TEXT,ADD_CLIENT_ACTION);
 	}
 
-	private void addButton(JPanel actionPanel,String textToAdd,String actionCommand) {
-		JButton button = new JButton(textToAdd);
-		button.addActionListener(this);
-		button.setActionCommand(actionCommand);
-		actionPanel.add(button);
-	}
+	
 
 	public void actionPerformed(ActionEvent arg0) {
 		

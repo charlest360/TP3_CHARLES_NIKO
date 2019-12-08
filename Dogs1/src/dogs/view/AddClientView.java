@@ -4,16 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import DTO.CreateClientDTO;
 import dogs.controller.IClientController;
 
-public class AddClientView extends View implements ActionListener{
+public class AddClientView extends DynamicView {
 	private static final String VIEW_TITLE = "Ajout d'un client";
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
 	
@@ -85,16 +82,9 @@ public class AddClientView extends View implements ActionListener{
 	private void setUpSouthPanel() {
 		JPanel panel = new JPanel();
 	
-		this.addButton(panel);
+		super.addButton(panel, INSCRIPTION_BUTTON_TEXT, ADD_CLIENT_ACTION,BorderLayout.CENTER);
 		
 		this.add(panel,BorderLayout.SOUTH);
-	}
-	
-	private void addButton(JPanel panel) {
-		JButton button = new JButton(INSCRIPTION_BUTTON_TEXT);
-		button.addActionListener(this);
-		button.setActionCommand(ADD_CLIENT_ACTION);
-		panel.add(button,BorderLayout.CENTER);
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
@@ -103,7 +93,6 @@ public class AddClientView extends View implements ActionListener{
 			CreateClientDTO dto = new CreateClientDTO(this.firstNameText.getText(),this.lastNameText.getText(),this.phoneNumberText.getText());
 
 			this.controller.addClient(dto);
-			
 			
 		}
 	}
