@@ -15,7 +15,7 @@ import dogs.controller.IDogController;
 
 
 
-public class DogView extends View implements ActionListener{
+public class AddDogView extends View implements ActionListener{
 	private static final String VIEW_TITLE = "Ajout de chiens";
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
 	
@@ -32,7 +32,7 @@ public class DogView extends View implements ActionListener{
 	private JTextField breedText;	
 	
 	
-	public DogView(IDogController controller) {
+	public AddDogView(IDogController controller) {
 		super(controller, VIEW_TITLE, DEFAULT_SIZE);
 		this.controller = controller;
 

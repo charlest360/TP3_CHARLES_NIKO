@@ -12,12 +12,6 @@ public class DogRepository {
 		this.dogList.put(dog.getId(), dog);
 	}
 	
-	
-	
-	public IDog getDog(Integer id) {
-		return this.dogList.get(id);
-	}
-	
 	public Map<Integer,IDog> getDogList() {
 		return this.dogList;
 	}

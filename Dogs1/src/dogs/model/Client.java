@@ -1,35 +1,36 @@
 package dogs.model;
 
-import dto.ClientSubscribe;
-import model.entity.Client;
+import DTO.CreateClientDTO;
 
-public class Client {
+public class Client implements IClient {
 	private static final int DEFAULT_CLIENT_NUMBER_VALUE = 1;
 	private static int currentClientNumber = DEFAULT_CLIENT_NUMBER_VALUE;
 	
 	private int id;
 	private String firstName;
 	private String lastName;
-	private String telephoneNumber;
+	private String phoneNumber;
 	
+	//Possiblement utile plus tard , à valider
 	public Client(String firstName, String lastName, String phoneNumber, int clientID) {
 		this.id = clientID;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.telephoneNumber = phoneNumber;
+		this.phoneNumber = phoneNumber;
 	}
 	
-	public Client(String firstName, String lastName, String telephoneNumber) {
-		this(firstName, lastName, telephoneNumber, Client.currentClientNumber);
+	public Client(String firstName, String lastName, String phoneNumber) {
+		this(firstName, lastName, phoneNumber, Client.currentClientNumber);
 		Client.currentClientNumber ++;
 	}
 	
-	public Client(Client client) {
+	//Possiblement utile plus tard , à valider
+	/*public Client(Client client) {
 		this(client.getFirstName(), client.getLastName(), client.getTelephoneNumber(), client.getId());
-	}
+	}*/
 	
-	public Client(ClientSubscribe client) {
-		this(client.FIRST_NAME, client.LAST_NAME, client.TELEPHONE_NUMBER);
+	public Client(CreateClientDTO clientDTO) {
+		this(clientDTO.FIRST_NAME,clientDTO.LAST_NAME,clientDTO.PHONE_NUMBER,Client.currentClientNumber);
 	}
 	
 	public int getId() {
@@ -44,7 +45,7 @@ public class Client {
 		return this.lastName;
 	}
 	
-	public String getTelephoneNumber() {
-		return this.telephoneNumber;
+	public String getPhoneNumber() {
+		return this.phoneNumber;
 	}
 }

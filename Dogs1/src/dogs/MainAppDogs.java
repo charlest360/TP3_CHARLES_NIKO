@@ -1,9 +1,10 @@
 package dogs;
 
-import DataSeed.DogDataSeed;
+import DataSeed.DataSeeder;
 import dogs.controller.IWelcomeController;
 
 import dogs.controller.WelcomeController;
+import dogs.model.ClientRepository;
 import dogs.model.DogRepository;
 
 public class MainAppDogs {
@@ -14,18 +15,19 @@ public class MainAppDogs {
 	}
 
 	public MainAppDogs() {
-		DogRepository repository = new DogRepository();
-		this.createDataSeed(repository);
-		this.createControllers(repository);
+		DogRepository dogRepository = new DogRepository();
+		ClientRepository clientRepository = new ClientRepository();
+		this.createDataSeed(dogRepository,clientRepository);
+		this.createControllers(dogRepository,clientRepository);
 		
 	}
 	
-	private void createControllers(DogRepository repository) {
-		IWelcomeController appController = new WelcomeController(repository);
+	private void createControllers(DogRepository dogRepository,ClientRepository clientRepository) {
+		IWelcomeController appController = new WelcomeController(dogRepository,clientRepository);
 		appController.startApplication();
 	}
 	
-	private void createDataSeed(DogRepository repository) {
-		DogDataSeed.AddInitialDogs(repository);
+	private void createDataSeed(DogRepository dogRepository,ClientRepository clientRepository) {
+		DataSeeder.AddInitialDogsAndClients(dogRepository,clientRepository);
 	}
 }

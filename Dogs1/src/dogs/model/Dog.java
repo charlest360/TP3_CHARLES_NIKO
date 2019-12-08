@@ -22,7 +22,7 @@ public class Dog implements IDog {
 	}
 	
 	public Dog(CreateDogDTO dogDTO) {
-		this(dogDTO.name,dogDTO.breed);
+		this(dogDTO.NAME,dogDTO.BREED);
 	}
 
 	public int getId() {

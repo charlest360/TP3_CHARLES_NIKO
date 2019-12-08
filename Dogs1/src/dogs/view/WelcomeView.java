@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -24,11 +23,15 @@ public class WelcomeView extends View implements ActionListener {
 	
 	private static final String VIEW_DOGS_ACTION = "View Dogs";
 	private static final String ADD_DOG_ACTION = "Add dog";
+	private static final String VIEW_CLIENTS_ACTION = "View Clients";
+	private static final String ADD_CLIENT_ACTION = "Add client";
 	
 	private static final String WELCOME_PICTURE = "../resource/dog.jpg";
 	
-	private static final String VIEW_DOGS_BUTTON_TEXT = "Afficher les chiens ...";
-	private static final String ADD_DOG_BUTTON_TEXT = "Inscrire un chien ...";
+	private static final String VIEW_DOGS_BUTTON_TEXT = "Afficher les chiens";
+	private static final String ADD_DOG_BUTTON_TEXT = "Inscrire un chien";
+	private static final String VIEW_CLIENTS_BUTTON_TEXT = "Afficher les clients";
+	private static final String ADD_CLIENT_BUTTON_TEXT = "Inscrire un client";
 	
 	
 	private IWelcomeController controller;		
@@ -76,6 +79,8 @@ public class WelcomeView extends View implements ActionListener {
 		
 		addButton(actionPanel,VIEW_DOGS_BUTTON_TEXT,VIEW_DOGS_ACTION);
 		addButton(actionPanel,ADD_DOG_BUTTON_TEXT,ADD_DOG_ACTION);
+		addButton(actionPanel,VIEW_CLIENTS_BUTTON_TEXT,VIEW_CLIENTS_ACTION);
+		addButton(actionPanel,ADD_CLIENT_BUTTON_TEXT,ADD_CLIENT_ACTION);
 	
 	}
 
@@ -90,7 +95,7 @@ public class WelcomeView extends View implements ActionListener {
 		
 		//Utilisation de switch plutot que if else pour simplifier l'ajouter de bouttons dans le futur .
 		
-		/*switch(arg0.getActionCommand()) {
+		switch(arg0.getActionCommand()) {
 			
 			case VIEW_DOGS_ACTION:
 				this.controller.viewDogs();
@@ -99,14 +104,22 @@ public class WelcomeView extends View implements ActionListener {
 			case ADD_DOG_ACTION:
 				this.controller.addDog();
 				break;
+				
+			case VIEW_CLIENTS_ACTION:
+				this.controller.viewClients();
+				break;
+				
+			/*case ADD_CLIENT_ACTION:
+				this.controller.addDog();
+				break;*/
 		  
-		}*/
+		}
 		
-		if(arg0.getActionCommand() == VIEW_DOGS_ACTION) {
+		/*if(arg0.getActionCommand() == VIEW_DOGS_ACTION) {
 			this.controller.viewDogs();
 		}
 		else if(arg0.getActionCommand() == ADD_DOG_ACTION) {
 			this.controller.addDog();
-		}
+		}*/
 	}
 }

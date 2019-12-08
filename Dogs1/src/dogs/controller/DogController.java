@@ -8,7 +8,7 @@ import dogs.model.Dog;
 import dogs.model.DogRepository;
 import dogs.model.IDog;
 import dogs.view.DisplayDogView;
-import dogs.view.DogView;
+import dogs.view.AddDogView;
 
 
 
@@ -25,7 +25,7 @@ public class DogController extends Controller implements IDogController {
 	}
 	
 	public void showAddDogsView() {
-		super.showView(new DogView(this));
+		super.showView(new AddDogView(this));
 	}
 	
 	public void addDog(CreateDogDTO dto) {

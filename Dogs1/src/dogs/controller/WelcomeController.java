@@ -1,5 +1,6 @@
 package dogs.controller;
 
+import dogs.model.ClientRepository;
 import dogs.model.DogRepository;
 
 import dogs.view.WelcomeView;
@@ -7,9 +8,11 @@ import dogs.view.WelcomeView;
 public class WelcomeController extends Controller implements IWelcomeController {
 
 	private IDogController dogController;
+	private IClientController clientController;
 	
-	public WelcomeController(DogRepository dogRepository) {
+	public WelcomeController(DogRepository dogRepository,ClientRepository clientRepository) {
 		this.dogController = new DogController(dogRepository);
+		this.clientController = new ClientController(clientRepository);
 	}
 	
 	public void startApplication() {
@@ -23,6 +26,12 @@ public class WelcomeController extends Controller implements IWelcomeController 
 
 	public void viewDogs() {
 		this.dogController.showDisplayDogsView();		
+	}
+
+	@Override
+	public void viewClients() {
+		this.clientController.showDisplayClientsView();
+		
 	}
 
 }

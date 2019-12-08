@@ -75,9 +75,9 @@ public class DisplayDogView extends View {
 			DisplayDogDTO dog;
 			for (int i =0 ;i< this.dogList.size();i++) {
 				dog = this.dogList.get(i);
-				super.addLabel(panel, Integer.toString(dog.id));
-				super.addLabel(panel, dog.name);
-				super.addLabel(panel, dog.breed);
+				super.addLabel(panel, Integer.toString(dog.ID));
+				super.addLabel(panel, dog.NAME);
+				super.addLabel(panel, dog.BREED);
 			}
 		}
 	}

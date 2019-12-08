@@ -1,12 +1,12 @@
 package DTO;
 
 public class CreateDogDTO {
-	public final String name;
-	public final String breed;
+	public final String NAME;
+	public final String BREED;
 	
 	public CreateDogDTO(String name,String breed) {
-		this.name = name;
-		this.breed = breed;
+		this.NAME = name;
+		this.BREED = breed;
 	}
 	
 }

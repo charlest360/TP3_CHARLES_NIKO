@@ -7,5 +7,7 @@ public interface IWelcomeController extends IController {
 	void addDog();
 
 	void viewDogs();
+
+	void viewClients();
 	
 }
