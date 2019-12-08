@@ -12,9 +12,10 @@ import dogs.model.Client;
 import dogs.model.ClientRepository;
 import dogs.model.IClient;
 import dogs.view.AddClientConfirmationView;
-import dogs.view.AddClientErrorView;
+import dogs.view.ClientErrorMessageView;
 import dogs.view.AddClientView;
 import dogs.view.DisplayClientByPhoneView;
+import dogs.view.DisplayClientMatchIdView;
 import dogs.view.DisplayClientView;
 
 public class ClientController extends Controller implements IClientController {
@@ -22,6 +23,8 @@ public class ClientController extends Controller implements IClientController {
 	private final static String FIRST_NAME_ERROR = "Veuillez entrer un prénom valide";
 	private final static String LAST_NAME_ERROR = "Veuillez entrer un nom de famille valide";
 	private final static String PHONE_ERROR = "Veuillez entrer un numéro de téléphone valide";
+	private final static String NO_ID_MATCH_ERROR = "Aucun id de client ne correspond à celui recherché.";
+	
 	private ClientRepository clientRepository;
 	
 	public ClientController(ClientRepository clientRepository) {
@@ -80,21 +83,21 @@ public class ClientController extends Controller implements IClientController {
 		
 	}
 	
-	private void showAddClientErrorView(String errorMessage) {
-		super.showView(new AddClientErrorView(this,errorMessage));
+	private void showClientErrorView(String errorMessage) {
+		super.showView(new ClientErrorMessageView(this,errorMessage));
 		
 	}
 
 	private void validateFormInput(CreateClientDTO clientDTO) {
 		
 		if(clientDTO.FIRST_NAME.length() <2) {
-			this.showAddClientErrorView(FIRST_NAME_ERROR);
+			this.showClientErrorView(FIRST_NAME_ERROR);
 		}
 		else if(clientDTO.LAST_NAME.length() <2) {
-			this.showAddClientErrorView(LAST_NAME_ERROR);
+			this.showClientErrorView(LAST_NAME_ERROR);
 		}
 		else if(clientDTO.PHONE_NUMBER.length() <12) {
-			this.showAddClientErrorView(PHONE_ERROR);
+			this.showClientErrorView(PHONE_ERROR);
 		}
 		else {
 			IClient client = new Client(clientDTO);
@@ -102,6 +105,20 @@ public class ClientController extends Controller implements IClientController {
 			this.showAddClientConfirmationView();
 		}
 		
+	}
+
+	@Override
+	public void showClientMatchId(String id) {
+		
+		int idNumber =Integer.valueOf(id);
+		
+		if (this.clientRepository.getClientList().containsKey(idNumber)) {
+			DisplayClientDTO clientDTO = new DisplayClientDTO( this.clientRepository.getClientList().get(idNumber));
+			super.showView(new DisplayClientMatchIdView(this,clientDTO));
+		}
+		else {
+			this.showClientErrorView(NO_ID_MATCH_ERROR);
+		}
 	}
 	
 	

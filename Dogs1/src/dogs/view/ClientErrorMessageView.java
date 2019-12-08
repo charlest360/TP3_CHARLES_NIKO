@@ -9,12 +9,12 @@ import javax.swing.SwingConstants;
 
 import dogs.controller.IClientController;
 
-public class AddClientErrorView extends View{
+public class ClientErrorMessageView extends View{
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
 	private static final String TITLE = "Erreur";
 	private final String ERROR_MESSAGE;
 	
-	public AddClientErrorView(IClientController controller, String errorMessage) {
+	public ClientErrorMessageView(IClientController controller, String errorMessage) {
 		super(controller, TITLE, DEFAULT_SIZE);
 		this.ERROR_MESSAGE = errorMessage;
 		

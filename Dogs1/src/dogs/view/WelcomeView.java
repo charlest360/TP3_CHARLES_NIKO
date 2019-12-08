@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import dogs.controller.IWelcomeController;
@@ -19,28 +20,33 @@ import util.image.ImageUtil;
 
 public class WelcomeView extends View implements ActionListener {  
 	
+	//Constantes autres
 	private static final String VIEW_TITLE = "Page d'accueil";
 	private static final String WELCOME_MESSAGE = "Bienvenue !";
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
 	private static final int NB_OF_COLLUMNS = 2;
 	private static final int NB_OF_ROWS = 0;
-	
+	private static final String WELCOME_PICTURE = "../resource/dog.jpg";
+	//Actions
 	private static final String VIEW_DOGS_ACTION = "View Dogs";
 	private static final String ADD_DOG_ACTION = "Add dog";
 	private static final String VIEW_CLIENTS_BY_NAME_ACTION = "View Clients By Name";
 	private static final String VIEW_CLIENTS_BY_PHONE_ACTION = "View Clients By Phone";
 	private static final String ADD_CLIENT_ACTION = "Add client";
-	
-	private static final String WELCOME_PICTURE = "../resource/dog.jpg";
-	
+	private static final String SEARCH_CLIENT_BY_ID_ACTION = "Search Client By Id";
+	//Textes boutons
+	private static final String SEARCH_CLIENT_BY_ID_BUTTON_TEXT ="Rechercher un client par Id";
 	private static final String VIEW_DOGS_BUTTON_TEXT = "Afficher les chiens";
 	private static final String ADD_DOG_BUTTON_TEXT = "Inscrire un chien";
 	private static final String VIEW_CLIENTS_BY_NAME_BUTTON_TEXT = "Afficher les clients triés par Nom";
 	private static final String VIEW_CLIENTS_BY_PHONE_BUTTON_TEXT = "Afficher les clients triés par Téléphone";
 	private static final String ADD_CLIENT_BUTTON_TEXT = "Inscrire un client";
 	
-	
+	//Controller
 	private IWelcomeController controller;		
+	
+	//Champs de texte
+	private JTextField idClient;
 	
 	public WelcomeView(IWelcomeController controller) {
 		super(controller, VIEW_TITLE,DEFAULT_SIZE);
@@ -84,15 +90,21 @@ public class WelcomeView extends View implements ActionListener {
 	private void setUpActionPanel() {
 		JPanel actionPanel = new JPanel();
 		this.add(actionPanel,BorderLayout.SOUTH);
-		
 		actionPanel.setLayout(new GridLayout(NB_OF_ROWS,NB_OF_COLLUMNS));
 		
-		addButton(actionPanel,VIEW_DOGS_BUTTON_TEXT,VIEW_DOGS_ACTION);
-		addButton(actionPanel,ADD_DOG_BUTTON_TEXT,ADD_DOG_ACTION);
-		addButton(actionPanel,VIEW_CLIENTS_BY_NAME_BUTTON_TEXT,VIEW_CLIENTS_BY_NAME_ACTION);
-		addButton(actionPanel,VIEW_CLIENTS_BY_PHONE_BUTTON_TEXT,VIEW_CLIENTS_BY_PHONE_ACTION);
-		addButton(actionPanel,ADD_CLIENT_BUTTON_TEXT,ADD_CLIENT_ACTION);
+		this.idClient = new JTextField();
+		actionPanel.add(this.idClient);
+		
+		this.addAllButtons(actionPanel);
+	}
 	
+	private void addAllButtons(JPanel actionPanel) {
+		this.addButton(actionPanel,SEARCH_CLIENT_BY_ID_BUTTON_TEXT,SEARCH_CLIENT_BY_ID_ACTION);
+		this.addButton(actionPanel,VIEW_DOGS_BUTTON_TEXT,VIEW_DOGS_ACTION);
+		this.addButton(actionPanel,ADD_DOG_BUTTON_TEXT,ADD_DOG_ACTION);
+		this.addButton(actionPanel,VIEW_CLIENTS_BY_NAME_BUTTON_TEXT,VIEW_CLIENTS_BY_NAME_ACTION);
+		this.addButton(actionPanel,VIEW_CLIENTS_BY_PHONE_BUTTON_TEXT,VIEW_CLIENTS_BY_PHONE_ACTION);
+		this.addButton(actionPanel,ADD_CLIENT_BUTTON_TEXT,ADD_CLIENT_ACTION);
 	}
 
 	private void addButton(JPanel actionPanel,String textToAdd,String actionCommand) {
@@ -103,8 +115,6 @@ public class WelcomeView extends View implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		
-		//Utilisation de switch plutot que if else pour simplifier l'ajouter de bouttons dans le futur .
 		
 		switch(arg0.getActionCommand()) {
 			
@@ -127,14 +137,12 @@ public class WelcomeView extends View implements ActionListener {
 			case ADD_CLIENT_ACTION:
 				this.controller.addClient();
 				break;
+			
+			case SEARCH_CLIENT_BY_ID_ACTION:
+				this.controller.searchClientById(this.idClient.getText());
+				break;
 		  
 		}
 		
-		/*if(arg0.getActionCommand() == VIEW_DOGS_ACTION) {
-			this.controller.viewDogs();
-		}
-		else if(arg0.getActionCommand() == ADD_DOG_ACTION) {
-			this.controller.addDog();
-		}*/
 	}
 }

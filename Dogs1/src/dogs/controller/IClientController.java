@@ -20,6 +20,8 @@ public interface IClientController extends IController {
 	public List<DisplayClientDTO> getClientListByPhoneNumber();
 
 	public void addClient(CreateClientDTO dto);
+
+	public void showClientMatchId(String id);
 	
 	
 	

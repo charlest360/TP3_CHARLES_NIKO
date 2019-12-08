@@ -45,4 +45,10 @@ public class WelcomeController extends Controller implements IWelcomeController 
 		
 	}
 
+	@Override
+	public void searchClientById(String id) {
+		this.clientController.showClientMatchId(id);
+		
+	}
+
 }
