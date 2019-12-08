@@ -17,7 +17,6 @@ public class Dog implements IDog {
 	
 	
 	public Dog(String name, String breed,IClient owner) {
-		//TODO: calculer l'id --> un no unique pour identifier un chien
 		this.name = name;
 		this.breed = breed;
 		this.id = currentId;
