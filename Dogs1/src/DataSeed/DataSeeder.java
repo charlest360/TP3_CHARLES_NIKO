@@ -14,19 +14,7 @@ public class DataSeeder {
 	
 	public static void AddInitialDogsAndClients(DogRepository dogRepository,ClientRepository clientRepository ) {
 		
-		IDog dog1 = new Dog("Bobby","Corgi");
-		IDog dog2 = new Dog ("Cyrice","Boxer");
-		IDog dog3 = new Dog("Sylvie","Beagle");
-		IDog dog4 = new Dog ("Sam","Shih tzu");
-		IDog dog5 = new Dog("Niko","Mastiff");
-		IDog dog6 = new Dog("Charles","Border collie");
-		
-		dogRepository.addDog(dog1);
-		dogRepository.addDog(dog2);
-		dogRepository.addDog(dog3);
-		dogRepository.addDog(dog4);
-		dogRepository.addDog(dog5);
-		dogRepository.addDog(dog6);
+	
 		
 		IClient client1 = new Client("Aobby", "Bvoine", "418-123-4567");
 		IClient client2 = new Client("Pyrice", "Caradis", "418-123-1234");
@@ -41,5 +29,20 @@ public class DataSeeder {
 		clientRepository.addClient(client4);
 		clientRepository.addClient(client5);
 		clientRepository.addClient(client6);
+		
+		
+		IDog dog1 = new Dog("Bobby","Corgi",client1);
+		IDog dog2 = new Dog ("Cyrice","Boxer",client5);
+		IDog dog3 = new Dog("Sylvie","Beagle",client4);
+		IDog dog4 = new Dog ("Sam","Shih tzu",client3);
+		IDog dog5 = new Dog("Niko","Mastiff",client2);
+		IDog dog6 = new Dog("Charles","Border collie",client1);
+		
+		dogRepository.addDog(dog1);
+		dogRepository.addDog(dog2);
+		dogRepository.addDog(dog3);
+		dogRepository.addDog(dog4);
+		dogRepository.addDog(dog5);
+		dogRepository.addDog(dog6);
 	}
 }

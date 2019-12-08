@@ -6,7 +6,6 @@ import java.util.List;
 
 import DTO.CreateClientDTO;
 import DTO.DisplayClientDTO;
-import DTO.IClientModificationDTO;
 import DTO.UpdateClientDTO;
 import dogs.comparator.ClientNameComparator;
 import dogs.comparator.ClientPhoneComparator;
@@ -16,7 +15,6 @@ import dogs.model.IClient;
 import dogs.view.AddClientConfirmationView;
 import dogs.view.ClientErrorMessageView;
 import dogs.view.AddClientView;
-import dogs.view.DisplayClientByPhoneView;
 import dogs.view.DisplayClientMatchIdView;
 import dogs.view.DisplayClientView;
 

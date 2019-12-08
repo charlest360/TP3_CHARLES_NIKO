@@ -35,8 +35,10 @@ public class WelcomeView extends View implements ActionListener {
 	private static final String ADD_CLIENT_ACTION = "Add client";
 	private static final String SEARCH_CLIENT_BY_ID_ACTION = "Search Client By Id";
 	private static final String SEARCH_CLIENT_BY_NAME_ACTION = "Search Client By Name";
+	private static final String SEARCH_DOG_BY_ID_ACTION = "Search Dog By Id";
 	//Textes boutons
-	private static final String SEARCH_CLIENT_MATCH_ID_BUTTON_TEXT ="Rechercher un client par Id";
+	private static final String SEARCH_DOG_MATCH_ID_BUTTON_TEXT ="Rechercher un chien par id";
+	private static final String SEARCH_CLIENT_MATCH_ID_BUTTON_TEXT ="Rechercher un client par id";
 	private static final String SEARCH_CLIENT_MATCH_NAME_BUTTON_TEXT ="Rechercher un client par son nom de famille";
 	private static final String VIEW_DOGS_BUTTON_TEXT = "Afficher les chiens";
 	private static final String ADD_DOG_BUTTON_TEXT = "Inscrire un chien";
@@ -50,6 +52,7 @@ public class WelcomeView extends View implements ActionListener {
 	//Champs de texte
 	private JTextField idClient;
 	private JTextField nomClient;
+	private JTextField idDog;
 	
 	public WelcomeView(IWelcomeController controller) {
 		super(controller, VIEW_TITLE,DEFAULT_SIZE);
@@ -102,6 +105,7 @@ public class WelcomeView extends View implements ActionListener {
 		
 		this.idClient = new JTextField();
 		this.nomClient = new JTextField();
+		this.idDog = new JTextField();
 		
 		actionPanel.add(this.idClient);
 		this.addButton(actionPanel,SEARCH_CLIENT_MATCH_ID_BUTTON_TEXT,SEARCH_CLIENT_BY_ID_ACTION);
@@ -109,9 +113,12 @@ public class WelcomeView extends View implements ActionListener {
 		actionPanel.add(this.nomClient);
 		this.addButton(actionPanel,SEARCH_CLIENT_MATCH_NAME_BUTTON_TEXT,SEARCH_CLIENT_BY_NAME_ACTION);
 		
+		actionPanel.add(this.idDog);
+		this.addButton(actionPanel,SEARCH_DOG_MATCH_ID_BUTTON_TEXT,SEARCH_DOG_BY_ID_ACTION);
 		
 		this.addButton(actionPanel,VIEW_CLIENTS_BY_NAME_BUTTON_TEXT,VIEW_CLIENTS_BY_NAME_ACTION);
 		this.addButton(actionPanel,VIEW_CLIENTS_BY_PHONE_BUTTON_TEXT,VIEW_CLIENTS_BY_PHONE_ACTION);
+		
 		this.addButton(actionPanel,VIEW_DOGS_BUTTON_TEXT,VIEW_DOGS_ACTION);
 		this.addButton(actionPanel,ADD_DOG_BUTTON_TEXT,ADD_DOG_ACTION);
 		this.addButton(actionPanel,ADD_CLIENT_BUTTON_TEXT,ADD_CLIENT_ACTION);
@@ -155,7 +162,10 @@ public class WelcomeView extends View implements ActionListener {
 			case SEARCH_CLIENT_BY_NAME_ACTION:
 				this.controller.searchClientByName(this.nomClient.getText());
 				break;
-		  
+				
+			case SEARCH_DOG_BY_ID_ACTION:
+				this.controller.searchDogById(this.idDog.getText());
+				break;
 		}
 		
 	}

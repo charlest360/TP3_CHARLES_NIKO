@@ -20,17 +20,18 @@ public class AddDogView extends View implements ActionListener{
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
 	
 	private static final int NB_OF_ROWS = 0;
-	private static final int NB_OF_COLLUMNS = 2;
+	private static final int NB_OF_COLLUMNS = 3;
 	
 	private static final String NAME_LABEL = "Nom";
 	private static final String BREED_LABEL = "Race";
+	private static final String OWNER_ID_LABEL = "Id du propriétaire";
 	private static final String INSCRIPTION_BUTTON_TEXT = "Inscrire";
 	private static final String ADD_DOG_ACTION = "Add dog";
 	
 	private IDogController controller; 
 	private JTextField nameText;
 	private JTextField breedText;	
-	
+	private JTextField ownerIdText;
 	
 	public AddDogView(IDogController controller) {
 		super(controller, VIEW_TITLE, DEFAULT_SIZE);
@@ -69,16 +70,18 @@ public class AddDogView extends View implements ActionListener{
 		
 		super.addLabel(panel, NAME_LABEL);
 		super.addLabel(panel, BREED_LABEL);
+		super.addLabel(panel, OWNER_ID_LABEL);
 		
-		this.addJTextField(this.nameText, panel);
-		this.addJTextField(this.breedText, panel);
-		
+		this.nameText = new JTextField();
+		this.breedText = new JTextField();
+		this.ownerIdText = new JTextField();
+	
+		panel.add(nameText);
+		panel.add(breedText);
+		panel.add(ownerIdText);
 	}
 	
-	private void addJTextField(JTextField textField,JPanel panel) {
-		textField = new JTextField();
-		panel.add(textField);
-	}
+	
 	
 	private void setUpSouthPanel() {
 		JPanel panel = new JPanel();
@@ -97,8 +100,8 @@ public class AddDogView extends View implements ActionListener{
 	
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getActionCommand() == ADD_DOG_ACTION) {
-			
-			CreateDogDTO dto = new CreateDogDTO(this.nameText.getText(),this.breedText.getText());
+			int ownerId = Integer.valueOf(this.ownerIdText.getText());
+			CreateDogDTO dto = new CreateDogDTO(this.nameText.getText(),this.breedText.getText(),ownerId);
 
 			this.controller.addDog(dto);
 		}

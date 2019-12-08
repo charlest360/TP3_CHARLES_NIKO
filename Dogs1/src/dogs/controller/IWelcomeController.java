@@ -17,6 +17,8 @@ public interface IWelcomeController extends IController {
 	void searchClientById(String id);
 
 	void searchClientByName(String text);
+
+	void searchDogById(String id);
 	
 	
 }

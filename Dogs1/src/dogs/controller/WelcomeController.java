@@ -11,7 +11,7 @@ public class WelcomeController extends Controller implements IWelcomeController 
 	private IClientController clientController;
 	
 	public WelcomeController(DogRepository dogRepository,ClientRepository clientRepository) {
-		this.dogController = new DogController(dogRepository);
+		this.dogController = new DogController(dogRepository,clientRepository);
 		this.clientController = new ClientController(clientRepository);
 	}
 	
@@ -55,6 +55,11 @@ public class WelcomeController extends Controller implements IWelcomeController 
 	public void searchClientByName(String text) {
 		this.clientController.showClientsMatchName(text);
 		
+	}
+
+	@Override
+	public void searchDogById(String id) {
+		this.dogController.showDogMatchId(id);
 	}
 
 }
