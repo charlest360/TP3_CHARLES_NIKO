@@ -1,5 +1,7 @@
 package dogs.model;
 
+import DTO.CreateDogDTO;
+
 public class Dog implements IDog {  
 	
 	private int id;
@@ -17,6 +19,10 @@ public class Dog implements IDog {
 		
 		currentId++;
 		
+	}
+	
+	public Dog(CreateDogDTO dogDTO) {
+		this(dogDTO.name,dogDTO.breed);
 	}
 
 	public int getId() {

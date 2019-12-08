@@ -29,8 +29,7 @@ public class DogController extends Controller implements IDogController {
 	}
 	
 	public void addDog(CreateDogDTO dto) {
-		IDog dog = new Dog(dto.name,dto.breed);
-		
+		IDog dog = new Dog(dto);
 		this.dogRepository.addDog(dog);	
 	}
 	
