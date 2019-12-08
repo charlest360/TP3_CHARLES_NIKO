@@ -25,6 +25,8 @@ public interface IClientController extends IController {
 	public void showClientMatchId(String id);
 
 	public void SaveClientChanges(UpdateClientDTO dto);
+
+	public void showClientsMatchName(String text);
 	
 	
 	

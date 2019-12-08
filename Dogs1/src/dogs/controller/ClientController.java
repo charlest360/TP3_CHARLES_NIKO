@@ -26,6 +26,7 @@ public class ClientController extends Controller implements IClientController {
 	private final static String LAST_NAME_ERROR = "Veuillez entrer un nom de famille valide";
 	private final static String PHONE_ERROR = "Veuillez entrer un numéro de téléphone valide";
 	private final static String NO_ID_MATCH_ERROR = "Aucun id de client ne correspond à celui recherché.";
+	private final static String NO_NAME_MATCH_ERROR = "Aucun nom de famille de client ne correspond à celui recherché.";
 	
 	private final static String CLIENT_ADDED_MESSAGE = "Client ajouté avec succès!";
 	private final static String CLIENT_EDITED_MESSAGE = "Client édité avec succès!";
@@ -38,11 +39,11 @@ public class ClientController extends Controller implements IClientController {
 	}
 	
 	public void showDisplayClientByNameView() {
-		super.showView(new DisplayClientView(this));
+		super.showView(new DisplayClientView(this,getClientListByName()));
 	}
 	
 	public void showDisplayClientByPhoneView() {
-		super.showView(new DisplayClientByPhoneView(this));
+		super.showView(new DisplayClientView(this,getClientListByPhoneNumber()));
 	}
 	
 	public void showAddClientsView() {
@@ -141,6 +142,25 @@ public class ClientController extends Controller implements IClientController {
 			clientToEdit.setPhoneNumber(dto.PHONE_NUMBER);
 			
 			this.showClientConfirmationView(CLIENT_EDITED_MESSAGE);
+		}
+	}
+
+	@Override
+	public void showClientsMatchName(String lastName) {
+		
+		List<DisplayClientDTO> list = new ArrayList<DisplayClientDTO>();
+		
+		this.clientRepository.getClientList().forEach((integer,client)-> {
+			if(client.getLastName().equals(lastName)) {
+				list.add(new DisplayClientDTO(client));
+			}
+		});
+		
+		if (list.size()>0) {
+			super.showView(new DisplayClientView(this,list));
+		}
+		else {
+			this.showClientErrorView(NO_NAME_MATCH_ERROR);
 		}
 	}
 	

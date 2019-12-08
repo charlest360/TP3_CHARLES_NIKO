@@ -27,10 +27,10 @@ public class DisplayClientView extends View {
 	private IClientController controller; 	
 	
 	
-	public DisplayClientView(IClientController controller) {
+	public DisplayClientView(IClientController controller, List<DisplayClientDTO> list) {
 		super(controller,VIEW_TITLE,DEFAULT_SIZE);
 		this.controller = controller;
-		this.clientList = this.controller.getClientListByName();
+		this.clientList = list;
 		
 		this.setUpComponents();
 	}

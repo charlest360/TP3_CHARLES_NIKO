@@ -51,4 +51,10 @@ public class WelcomeController extends Controller implements IWelcomeController 
 		
 	}
 
+	@Override
+	public void searchClientByName(String text) {
+		this.clientController.showClientsMatchName(text);
+		
+	}
+
 }

@@ -1,7 +1,5 @@
 package dogs.controller;
 
-import javax.swing.JTextField;
-
 public interface IWelcomeController extends IController {
 
 	void startApplication();
@@ -17,6 +15,8 @@ public interface IWelcomeController extends IController {
 	void addClient();
 
 	void searchClientById(String id);
+
+	void searchClientByName(String text);
 	
 	
 }
