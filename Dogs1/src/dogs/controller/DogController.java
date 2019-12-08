@@ -17,10 +17,10 @@ import dogs.view.AddDogView;
 import dogs.view.DisplayDogMatchIdView;
 
 
-
 public class DogController extends Controller implements IDogController {
 	private final static String NO_OWNER_ID_MATCH_ERROR = "Aucun id de client ne corresponds à celui entré";
 	private final static String NO_ID_MATCH_ERROR ="Auncun chien ne correspond au id recherché";
+	private final static String NO_BREED_MATCH_ERROR ="Auncun chien ne correspond à la race recherchée";
 	private final static String NAME_ERROR ="Veuillez entrer un nom valide ";
 	private final static String BREED_ERROR ="Veuillez entrer une race valide ";
 	private final static String DOG_WAS_ADDED_MESSAGE = "Ajout du chien avec succès";
@@ -35,7 +35,7 @@ public class DogController extends Controller implements IDogController {
 	}
 	
 	public void showDisplayDogsView() {
-		super.showView(new DisplayDogView(this));
+		super.showView(new DisplayDogView(this,getDogList()));
 	}
 	
 	public void showAddDogsView() {
@@ -93,6 +93,26 @@ public class DogController extends Controller implements IDogController {
 		
 	}
 	
+	public void showDogMatchBreed(String breed) {
+
+		List<DisplayDogDTO> dogList = this.getDogList();
+		List<DisplayDogDTO> dogToDisplayList = new ArrayList<DisplayDogDTO>();
+		
+		for(int i = 0; i< dogList.size();i++) {
+			if (dogList.get(i).BREED.equals(breed) ) {
+				dogToDisplayList.add(dogList.get(i));
+			}
+		}
+		
+		if (dogToDisplayList.size()>0){
+			super.showView(new DisplayDogView(this,dogToDisplayList));
+		}
+		else {
+			this.DogErrorMessageView(NO_BREED_MATCH_ERROR);
+		}
+		
+	}
+	
 	private void DogErrorMessageView(String errorMessage) {
 		super.showView(new DogErrorMessageView(this,errorMessage));
 		
@@ -102,8 +122,6 @@ public class DogController extends Controller implements IDogController {
 		super.showView(new DogConfirmationMessageView(this,confirmationMessage));
 		
 	}
-
-	
 	
 	@Override
 	public void SaveDogChanges(UpdateDogDTO dto) {
@@ -120,9 +138,6 @@ public class DogController extends Controller implements IDogController {
 			this.DogConfirmationMessageView(DOG_EDITED_MESSAGE);
 		}
 	}
-	
-	
-		
 
 	private boolean validateFormInput(IDog dog) {
 		
@@ -141,9 +156,5 @@ public class DogController extends Controller implements IDogController {
 		return isDogValid;
 	}
 
-	
-	
-		
-	
 	
 }

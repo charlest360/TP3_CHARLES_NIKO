@@ -33,7 +33,9 @@ public class WelcomeView extends DynamicView  {
 	private static final String SEARCH_CLIENT_BY_ID_ACTION = "Search Client By Id";
 	private static final String SEARCH_CLIENT_BY_NAME_ACTION = "Search Client By Name";
 	private static final String SEARCH_DOG_BY_ID_ACTION = "Search Dog By Id";
+	private static final String SEARCH_DOG_BY_BREED_ACTION = "Search Dog By Breed";
 	//Textes boutons
+	private static final String SEARCH_DOG_MATCH_BREED_BUTTON_TEXT ="Rechercher un chien par race";
 	private static final String SEARCH_DOG_MATCH_ID_BUTTON_TEXT ="Rechercher un chien par id";
 	private static final String SEARCH_CLIENT_MATCH_ID_BUTTON_TEXT ="Rechercher un client par id";
 	private static final String SEARCH_CLIENT_MATCH_NAME_BUTTON_TEXT ="Rechercher un client par son nom de famille";
@@ -50,6 +52,7 @@ public class WelcomeView extends DynamicView  {
 	private JTextField idClient;
 	private JTextField nomClient;
 	private JTextField idDog;
+	private JTextField dogBreed;
 	
 	public WelcomeView(IWelcomeController controller) {
 		super(controller, VIEW_TITLE,DEFAULT_SIZE);
@@ -101,6 +104,9 @@ public class WelcomeView extends DynamicView  {
 		this.idClient = new JTextField();
 		this.nomClient = new JTextField();
 		this.idDog = new JTextField();
+		this.dogBreed = new JTextField();
+		
+		
 		
 		actionPanel.add(this.idClient);
 		super.addButton(actionPanel,SEARCH_CLIENT_MATCH_ID_BUTTON_TEXT,SEARCH_CLIENT_BY_ID_ACTION);
@@ -109,6 +115,9 @@ public class WelcomeView extends DynamicView  {
 		
 		actionPanel.add(this.idDog);
 		super.addButton(actionPanel,SEARCH_DOG_MATCH_ID_BUTTON_TEXT,SEARCH_DOG_BY_ID_ACTION);
+		actionPanel.add(this.dogBreed);
+		super.addButton(actionPanel,SEARCH_DOG_MATCH_BREED_BUTTON_TEXT,SEARCH_DOG_BY_BREED_ACTION);
+		
 		
 		super.addButton(actionPanel,VIEW_CLIENTS_BY_NAME_BUTTON_TEXT,VIEW_CLIENTS_BY_NAME_ACTION);
 		super.addButton(actionPanel,VIEW_CLIENTS_BY_PHONE_BUTTON_TEXT,VIEW_CLIENTS_BY_PHONE_ACTION);
@@ -161,6 +170,12 @@ public class WelcomeView extends DynamicView  {
 			case SEARCH_DOG_BY_ID_ACTION:
 				if (this.idDog.getText().length()>0) {
 					this.controller.searchDogById(this.idDog.getText());
+				}
+				break;
+			
+			case SEARCH_DOG_BY_BREED_ACTION:
+				if (this.dogBreed.getText().length()>0) {
+					this.controller.searchDogByBreed(this.dogBreed.getText());
 				}
 				break;
 		}

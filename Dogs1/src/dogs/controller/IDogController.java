@@ -13,4 +13,5 @@ public interface IDogController extends IController {
 	public List<DisplayDogDTO> getDogList();
 	public void showDogMatchId(String id);
 	public void SaveDogChanges(UpdateDogDTO dto);
+	public void showDogMatchBreed(String breed);
 }

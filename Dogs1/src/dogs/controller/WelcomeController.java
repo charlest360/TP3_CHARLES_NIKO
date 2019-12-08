@@ -54,12 +54,16 @@ public class WelcomeController extends Controller implements IWelcomeController 
 	@Override
 	public void searchClientByName(String text) {
 		this.clientController.showClientsMatchName(text);
-		
 	}
 
 	@Override
 	public void searchDogById(String id) {
 		this.dogController.showDogMatchId(id);
+	}
+
+	@Override
+	public void searchDogByBreed(String breed) {
+		this.dogController.showDogMatchBreed(breed);
 	}
 
 }
