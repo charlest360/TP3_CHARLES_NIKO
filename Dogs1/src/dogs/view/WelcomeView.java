@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -40,7 +41,10 @@ public class WelcomeView extends View implements ActionListener {
 		super(controller, VIEW_TITLE,DEFAULT_SIZE);
 		
 		this.controller = controller;
+		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setUpComponents();
+        
 	}
 	
 	public void display() {
@@ -48,7 +52,6 @@ public class WelcomeView extends View implements ActionListener {
 	}
 	
 	private void setUpComponents() {
-		//this.setLayout(new BorderLayout());  					// Inutile car par défaut...
 		this.setUpWelcomePanel();
 		this.setUpActionPanel();
 	}

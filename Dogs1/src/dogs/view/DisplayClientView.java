@@ -30,7 +30,7 @@ public class DisplayClientView extends View {
 	public DisplayClientView(IClientController controller) {
 		super(controller,VIEW_TITLE,DEFAULT_SIZE);
 		this.controller = controller;
-		this.clientList = this.controller.getClientList();
+		this.clientList = this.controller.getClientListByName();
 		
 		this.setUpComponents();
 	}
@@ -70,8 +70,8 @@ public class DisplayClientView extends View {
 	
 	private void addClientLabels(JPanel panel) {
 		super.addLabel(panel, ID_LABEL);
-		super.addLabel(panel, LAST_NAME_LABEL);
 		super.addLabel(panel, FIRST_NAME_LABEL);
+		super.addLabel(panel, LAST_NAME_LABEL);
 		super.addLabel(panel, PHONE_NUMBER_LABEL);
 	}
 	
@@ -82,8 +82,8 @@ public class DisplayClientView extends View {
 		for (int i =0 ;i< this.clientList.size();i++) {
 			client = this.clientList.get(i);
 			super.addLabel(panel, Integer.toString(client.ID));
-			super.addLabel(panel, client.LAST_NAME);
 			super.addLabel(panel, client.FIRST_NAME);
+			super.addLabel(panel, client.LAST_NAME);
 			super.addLabel(panel, client.PHONE_NUMBER);
 		}
 	}

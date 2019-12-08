@@ -1,10 +1,13 @@
 package dogs.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import DTO.CreateClientDTO;
 import DTO.DisplayClientDTO;
+import dogs.comparator.ClientNameComparator;
+import dogs.comparator.ClientPhoneComparator;
 import dogs.model.Client;
 import dogs.model.ClientRepository;
 import dogs.model.IClient;
@@ -42,23 +45,24 @@ public class ClientController extends Controller implements IClientController {
 			list.add(new DisplayClientDTO(client));
 		});
 		
-		
 		return list;
 	}
 	
-	/*public List<DisplayClientDTO> getClientListByName() { 
+	public List<DisplayClientDTO> getClientListByName() { 
 		List<DisplayClientDTO> list = getClientList();
-		list.sort(c);
+		
+		Collections.sort(list,new ClientNameComparator());
 		
 		return list;
 	}
 	
 	public List<DisplayClientDTO> getClientListByPhoneNumber() { 
 		List<DisplayClientDTO> list = getClientList();
-		list.sort();
+		
+		Collections.sort(list,new ClientPhoneComparator());
 		
 		return list;
-	}*/
+	}
 	
 	
 }

@@ -11,7 +11,6 @@ public class Client implements IClient {
 	private String lastName;
 	private String phoneNumber;
 	
-	//Possiblement utile plus tard , à valider
 	public Client(String firstName, String lastName, String phoneNumber, int clientID) {
 		this.id = clientID;
 		this.firstName = firstName;
@@ -19,18 +18,17 @@ public class Client implements IClient {
 		this.phoneNumber = phoneNumber;
 	}
 	
-	public Client(String firstName, String lastName, String phoneNumber) {
-		this(firstName, lastName, phoneNumber, Client.currentClientNumber);
+	public Client(String firstName, String lastName, String telephoneNumber) {
+		this(firstName, lastName, telephoneNumber, Client.currentClientNumber);
 		Client.currentClientNumber ++;
 	}
 	
-	//Possiblement utile plus tard , à valider
-	/*public Client(Client client) {
-		this(client.getFirstName(), client.getLastName(), client.getTelephoneNumber(), client.getId());
-	}*/
+	public Client(Client client) {
+		this(client.getFirstName(), client.getLastName(), client.getPhoneNumber(), client.getId());
+	}
 	
-	public Client(CreateClientDTO clientDTO) {
-		this(clientDTO.FIRST_NAME,clientDTO.LAST_NAME,clientDTO.PHONE_NUMBER,Client.currentClientNumber);
+	public Client(CreateClientDTO client) {
+		this(client.FIRST_NAME, client.LAST_NAME, client.PHONE_NUMBER);
 	}
 	
 	public int getId() {
