@@ -5,20 +5,20 @@ import java.util.Map;
 
 public class DogRepository {
 	
-	private Map<Integer,Dog> dogList = new HashMap<Integer,Dog>();
+	private Map<Integer,IDog> dogList = new HashMap<Integer,IDog>();
 	
 	
-	public void addDog(Dog dog) {
+	public void addDog(IDog dog) {
 		this.dogList.put(dog.getId(), dog);
 	}
 	
 	
 	
-	public Dog getDog(Integer id) {
+	public IDog getDog(Integer id) {
 		return this.dogList.get(id);
 	}
 	
-	public Map<Integer,Dog> getDogList() {
+	public Map<Integer,IDog> getDogList() {
 		return this.dogList;
 	}
 }

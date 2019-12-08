@@ -1,6 +1,6 @@
 package dogs.model;
 
-public class Dog {  // La classe est très simple ici mais il pourrait avoir des validations ou des algos plus complexes.
+public class Dog implements IDog {  
 	
 	private int id;
 	private String name;

@@ -6,6 +6,7 @@ import DTO.CreateDogDTO;
 import DTO.DisplayDogDTO;
 import dogs.model.Dog;
 import dogs.model.DogRepository;
+import dogs.model.IDog;
 import dogs.view.DisplayDogView;
 import dogs.view.DogView;
 
@@ -28,7 +29,7 @@ public class DogController extends Controller implements IDogController {
 	}
 	
 	public void addDog(CreateDogDTO dto) {
-		Dog dog = new Dog(dto.name,dto.breed);
+		IDog dog = new Dog(dto.name,dto.breed);
 		
 		this.dogRepository.addDog(dog);	
 	}
@@ -37,7 +38,7 @@ public class DogController extends Controller implements IDogController {
         this.repository.addListener(listener);
     }*/
 	
-	public List<DisplayDogDTO> getDogList() { // inspiré de http://zetcode.com/java/hashmapiterate/
+	public List<DisplayDogDTO> getDogList() { 
 		List<DisplayDogDTO> list = new ArrayList<DisplayDogDTO>();
 		
 		this.dogRepository.getDogList().forEach((integer,dog)-> {
