@@ -49,7 +49,7 @@ public class Dog implements IDog {
 		return breed;
 	}
 	public void setBreed(String breed) {
-		this.breed =breed;
+		this.breed = breed;
 	}
 	
 	public int getOwnerId() {
