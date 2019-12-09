@@ -24,6 +24,7 @@ public class DisplayClientView extends View {
 	private static final String PHONE_NUMBER_LABEL = "Téléphone";
 	
 	private List<DisplayClientDTO> clientList;
+	@SuppressWarnings("unused")
 	private IClientController controller; 	
 	
 	

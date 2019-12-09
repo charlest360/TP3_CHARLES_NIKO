@@ -46,7 +46,7 @@ public class Dog implements IDog {
 	}
 
 	public String getBreed() {
-		return breed;
+		return this.breed;
 	}
 	public void setBreed(String breed) {
 		this.breed =breed;

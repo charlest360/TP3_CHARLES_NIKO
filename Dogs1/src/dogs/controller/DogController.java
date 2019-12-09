@@ -3,6 +3,7 @@ package dogs.controller;
 import java.util.ArrayList;
 import java.util.List;
 import DTO.CreateDogDTO;
+import DTO.DeleteDogDTO;
 import DTO.DisplayDogDTO;
 import DTO.UpdateDogDTO;
 import dogs.model.ClientRepository;
@@ -14,6 +15,7 @@ import dogs.view.DisplayDogView;
 import dogs.view.DogConfirmationMessageView;
 import dogs.view.DogErrorMessageView;
 import dogs.view.AddDogView;
+import dogs.view.ConfirmDeleteView;
 import dogs.view.DisplayDogMatchIdView;
 
 
@@ -25,6 +27,7 @@ public class DogController extends Controller implements IDogController {
 	private final static String BREED_ERROR ="Veuillez entrer une race valide ";
 	private final static String DOG_WAS_ADDED_MESSAGE = "Ajout du chien avec succès";
 	private final static String DOG_EDITED_MESSAGE = "Chien édité avec succès!";
+	private final static String DELETE_DOG_CONFIRMATION = "Suppression du chien avec succès! ";
 	
 	private DogRepository dogRepository;
 	private ClientRepository clientRepository;
@@ -139,6 +142,19 @@ public class DogController extends Controller implements IDogController {
 			isDogValid =true;	
 		}
 		return isDogValid;
+	}
+
+	@Override
+	public void DeleteDog(DeleteDogDTO dto) {
+		super.showView(new ConfirmDeleteView(this,dto));
+	}
+
+	@Override
+	public void RemoveDog(DeleteDogDTO dto) {
+		if (this.dogRepository.getDogList().containsKey(dto.ID)) {
+			this.dogRepository.getDogList().remove(dto.ID);
+		}
+		this.DogConfirmationMessageView(DELETE_DOG_CONFIRMATION);
 	}
 
 	

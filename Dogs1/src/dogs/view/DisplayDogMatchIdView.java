@@ -4,24 +4,22 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import DTO.DeleteDogDTO;
 import DTO.DisplayDogDTO;
 import DTO.UpdateDogDTO;
 import dogs.controller.IDogController;
 
-public class DisplayDogMatchIdView extends View implements ActionListener{
+
+public class DisplayDogMatchIdView extends DynamicView {
 	
 	private static final String VIEW_TITLE = "Voir les chiens";
 	private static final Dimension DEFAULT_SIZE = new Dimension(475, 530);
 	
 	private static final int NB_OF_ROWS = 0;
 	private static final int NB_OF_COLLUMNS = 7;
-	
 	
 	private static final String ID_LABEL = "Id ";
 	private static final String NAME_LABEL = "Nom";
@@ -33,6 +31,8 @@ public class DisplayDogMatchIdView extends View implements ActionListener{
 	
 	private static final String EDIT_DOG_BUTTON_TEXT = "Sauvegarder";
 	private static final String EDIT_DOG_ACTION = "Éditer Chien";
+	private static final String DELETE_DOG_BUTTON_TEXT = "Supprimer";
+	private static final String DELETE_DOG_ACTION = "Supprimer Chien";
 	
 	private JTextField dogName; 
 	private JTextField dogBreed;
@@ -51,8 +51,6 @@ public class DisplayDogMatchIdView extends View implements ActionListener{
 	private void setUpComponents() {
 		this.setUpDogPanel();
 	}
-	
-	
 	
 	private void setUpDogPanel() {
 		JPanel dogFormPanel = new JPanel();
@@ -78,16 +76,10 @@ public class DisplayDogMatchIdView extends View implements ActionListener{
 	private void setUpSouthPanel() {
 		JPanel panel = new JPanel();
 	
-		this.addSaveButton(panel);
-		
 		this.add(panel,BorderLayout.SOUTH);
-	}
-	
-	private void addSaveButton(JPanel panel) {
-		JButton button = new JButton(EDIT_DOG_BUTTON_TEXT);
-		button.addActionListener(this);
-		button.setActionCommand(EDIT_DOG_ACTION);
-		panel.add(button,BorderLayout.CENTER);
+		super.addButton(panel, EDIT_DOG_BUTTON_TEXT, EDIT_DOG_ACTION);
+		super.addButton(panel, DELETE_DOG_BUTTON_TEXT, DELETE_DOG_ACTION);
+		
 	}
 	
 	private void addDogLabels(JPanel panel) {
@@ -111,11 +103,10 @@ public class DisplayDogMatchIdView extends View implements ActionListener{
 	
 	private void addDogTextfields(JPanel panel) {
 		this.dogName = new JTextField(this.dogToDisplay.NAME);
-		this.dogBreed = new JTextField(this.dogToDisplay.BREED);		
+		this.dogBreed = new JTextField(this.dogToDisplay.BREED.toString());		
 		
 		panel.add(this.dogName);
 		panel.add(this.dogBreed);
-		
 		
 	}
 
@@ -125,6 +116,11 @@ public class DisplayDogMatchIdView extends View implements ActionListener{
 		if(arg0.getActionCommand()== EDIT_DOG_ACTION) {
 			UpdateDogDTO dto = new UpdateDogDTO(this.dogToDisplay.ID,this.dogName.getText(),this.dogBreed.getText(),this.dogToDisplay.OWNER_ID);
 			this.controller.SaveDogChanges(dto);
+		}
+		
+		if(arg0.getActionCommand()== DELETE_DOG_ACTION) {
+			DeleteDogDTO dto = new DeleteDogDTO(this.dogToDisplay.ID);
+			this.controller.DeleteDog(dto);
 		}
 		
 	}
