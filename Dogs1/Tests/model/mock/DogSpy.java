@@ -1,4 +1,6 @@
-package dogs.model;
+package model.mock;
+
+import dogs.model.IDog;
 
 public class DogSpy implements IDog {
 	

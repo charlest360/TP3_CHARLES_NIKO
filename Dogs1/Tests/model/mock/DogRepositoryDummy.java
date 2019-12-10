@@ -1,6 +1,9 @@
-package dogs.model;
+package model.mock;
 
 import java.util.Map;
+
+import dogs.model.IDog;
+import dogs.model.IDogRepository;
 
 public class DogRepositoryDummy implements IDogRepository {
 

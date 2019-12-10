@@ -11,12 +11,12 @@ import DTO.DisplayClientDTO;
 import DTO.UpdateClientDTO;
 import dogs.controller.ClientController;
 import dogs.controller.IClientController;
-import dogs.model.ClientRepositorySpy;
-import dogs.model.ClientRepositoryStub;
-import dogs.model.ClientSpy;
-import dogs.model.ClientStub;
 import dogs.model.IClient;
 import dogs.model.IClientRepository;
+import model.mock.ClientRepositorySpy;
+import model.mock.ClientRepositoryStub;
+import model.mock.ClientSpy;
+import model.mock.ClientStub;
 
 public class ClientControllerTest {
 	private final String ANY_STRING ="a string";

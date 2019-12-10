@@ -1,7 +1,10 @@
-package dogs.model;
+package model.mock;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import dogs.model.IDog;
+import dogs.model.IDogRepository;
 
 public class DogRepositoryStub implements IDogRepository {
 

@@ -1,7 +1,10 @@
-package dogs.model;
+package model.mock;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import dogs.model.IClient;
+import dogs.model.IClientRepository;
 
 public class ClientRepositoryStub implements IClientRepository {
 	

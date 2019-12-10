@@ -1,5 +1,15 @@
 package dogs.comparator;
 
-public class DogNameComparator {
+import java.util.Comparator;
+
+import DTO.DisplayDogDTO;
+
+public class DogNameComparator implements Comparator<DisplayDogDTO> {
+
+	@Override
+	public int compare(DisplayDogDTO dog1, DisplayDogDTO dog2) {
+		// TODO Auto-generated method stub
+		return dog1.NAME.compareTo(dog2.NAME); 
+	}
 
 }

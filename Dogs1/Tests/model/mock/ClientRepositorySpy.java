@@ -1,6 +1,9 @@
-package dogs.model;
+package model.mock;
 
 import java.util.Map;
+
+import dogs.model.IClient;
+import dogs.model.IClientRepository;
 
 public class ClientRepositorySpy implements IClientRepository {
 	

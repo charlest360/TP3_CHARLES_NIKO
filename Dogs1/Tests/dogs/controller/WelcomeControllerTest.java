@@ -6,15 +6,8 @@ import org.junit.Test;
 
 import controller.mock.ClientControllerDummy;
 import controller.mock.ClientControllerSpy;
-import controller.mock.ControllerDummy;
 import controller.mock.DogControllerDummy;
 import controller.mock.DogControllerSpy;
-import dogs.model.ClientRepositoryDummy;
-import dogs.model.DogRepositoryDummy;
-import dogs.model.DogRepositorySpy;
-import dogs.model.IClientRepository;
-import dogs.model.IDogRepository;
-import dogs.model.ViewSpy;
 
 public class WelcomeControllerTest {
 	
@@ -101,34 +94,62 @@ public class WelcomeControllerTest {
 	public void WHEN_callingAddDogInWelcomeController_THEN_showAddDogsViewIsCalledInDogController() {		
 		//Arrange
 		IDogController dogController = new DogControllerSpy();
-		IWelcomeController welcomeController = new WelcomeController(ANY_CLIENT_CONTROLLER, dogController);;
+		IWelcomeController welcomeController = new WelcomeController(ANY_CLIENT_CONTROLLER, dogController);
 		
 		//Act
 		welcomeController.addDog();
 		
 		//Assert
-		//final boolean HAS_FUNCTION_BEEN_CALLED =  ((DogControllerSpy) dogController).showAddDogsViewWasCalled;
+		final boolean HAS_FUNCTION_BEEN_CALLED =  ((DogControllerSpy) dogController).showAddDogsViewWasCalled;
 		
-		//assertTrue(HAS_FUNCTION_BEEN_CALLED);	
+		assertTrue(HAS_FUNCTION_BEEN_CALLED);	
+	}
+	
+	@Test 
+	public void WHEN_callingViewDogsInWelcomeController_THEN_showDisplayDogsViewIsCalledInDogController() {		
+		//Arrange
+		IDogController dogController = new DogControllerSpy();
+		IWelcomeController welcomeController = new WelcomeController(ANY_CLIENT_CONTROLLER, dogController);
+		
+		//Act
+		welcomeController.viewDogs();
+		
+		//Assert
+		final boolean HAS_FUNCTION_BEEN_CALLED =  ((DogControllerSpy) dogController).showDisplayDogsViewWasCalled;
+		
+		assertTrue(HAS_FUNCTION_BEEN_CALLED);	
+	}
+	
+	@Test 
+	public void WHEN_callingSearchDogByIdInWelcomeController_THEN_getDogMatchIdIsCalledInDogController() {		
+		//Arrange
+		IDogController dogController = new DogControllerSpy();
+		IWelcomeController welcomeController = new WelcomeController(ANY_CLIENT_CONTROLLER, dogController);
+		
+		//Act
+		welcomeController.searchDogById(ANY_STRING);
+		
+		//Assert
+		final boolean HAS_FUNCTION_BEEN_CALLED =  ((DogControllerSpy) dogController).getDogMatchIdWasCalled;
+		
+		assertTrue(HAS_FUNCTION_BEEN_CALLED);	
+	}
+	
+	@Test 
+	public void WHEN_callingSearchDogByBreedInWelcomeController_THEN_getDogMatchBreedIsCalledInDogController() {		
+		//Arrange
+		IDogController dogController = new DogControllerSpy();
+		IWelcomeController welcomeController = new WelcomeController(ANY_CLIENT_CONTROLLER, dogController);
+		
+		//Act
+		welcomeController.searchDogByBreed(ANY_STRING);
+		
+		//Assert
+		final boolean HAS_FUNCTION_BEEN_CALLED =  ((DogControllerSpy) dogController).getDogMatchBreedWasCalled;
+		
+		assertTrue(HAS_FUNCTION_BEEN_CALLED);	
 	}
 	
 	
-	/*
-	 	public void addDog() {
-		this.dogController.showAddDogsView();
-	}
 	
-	
-	public void viewDogs() {
-		this.dogController.showDisplayDogsView();		
-	}
-	
-	@Override
-	public void searchDogById(String id) {
-		this.dogController.getDogMatchId(id);
-	}
-
-
-	
-	 */
 }

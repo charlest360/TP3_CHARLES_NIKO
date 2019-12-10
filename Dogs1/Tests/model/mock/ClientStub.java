@@ -1,4 +1,6 @@
-package dogs.model;
+package model.mock;
+
+import dogs.model.IClient;
 
 public class ClientStub implements IClient{
 	

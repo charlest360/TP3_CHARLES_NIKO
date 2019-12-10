@@ -10,25 +10,31 @@ import dogs.controller.IDogController;
 
 public class DogControllerSpy implements IDogController{
 	
-	private boolean showDisplayDogsViewWasCalled = false;
-	//private boolean
-	//private boolean
-	
+	public boolean showDisplayDogsViewWasCalled = false;
+	public boolean showAddDogsViewWasCalled=false;
+	public boolean getDogMatchIdWasCalled=false;
+	public boolean getDogMatchBreedWasCalled=false;
+
 	@Override
 	public void showDisplayDogsView() {
-		// TODO Auto-generated method stub
-		
+		this.showDisplayDogsViewWasCalled = true;	
 	}
 
 	@Override
 	public void showAddDogsView() {
-		// TODO Auto-generated method stub
+		this.showAddDogsViewWasCalled = true;
 		
 	}
 	
 	@Override
 	public void getDogMatchBreed(String breed) {
-		//this.getDogMatchBreedWasCalled = true;
+		this.getDogMatchBreedWasCalled = true;
+		
+	}
+	
+	@Override
+	public void getDogMatchId(String id) {
+		this.getDogMatchIdWasCalled = true;
 		
 	}
 
@@ -38,11 +44,7 @@ public class DogControllerSpy implements IDogController{
 		
 	}
 
-	@Override
-	public void getDogMatchId(String id) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public void saveDogChanges(UpdateDogDTO dto) {

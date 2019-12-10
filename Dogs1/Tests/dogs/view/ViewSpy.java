@@ -1,4 +1,4 @@
-package dogs.model;
+package dogs.view;
 
 import dogs.view.IView;
 

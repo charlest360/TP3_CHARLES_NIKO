@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import controller.mock.ControllerDummy;
-import dogs.model.ViewSpy;
+import dogs.view.ViewSpy;
 
 	public class ControllerTest {
 		

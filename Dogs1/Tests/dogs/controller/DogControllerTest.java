@@ -10,17 +10,17 @@ import DTO.CreateDogDTO;
 import DTO.DeleteDogDTO;
 import DTO.DisplayDogDTO;
 import DTO.UpdateDogDTO;
-import dogs.model.ClientRepositoryDummy;
-import dogs.model.ClientRepositoryStub;
-import dogs.model.ClientStub;
-import dogs.model.DogRepositorySpy;
-import dogs.model.DogRepositoryStub;
-import dogs.model.DogStub;
-import dogs.model.DogSpy;
 import dogs.model.IClient;
 import dogs.model.IClientRepository;
 import dogs.model.IDog;
 import dogs.model.IDogRepository;
+import model.mock.ClientRepositoryDummy;
+import model.mock.ClientRepositoryStub;
+import model.mock.ClientStub;
+import model.mock.DogRepositorySpy;
+import model.mock.DogRepositoryStub;
+import model.mock.DogSpy;
+import model.mock.DogStub;
 
 public class DogControllerTest {
 	

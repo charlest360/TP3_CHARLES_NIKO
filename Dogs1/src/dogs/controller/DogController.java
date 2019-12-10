@@ -5,10 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import DTO.CreateDogDTO;
 import DTO.DeleteDogDTO;
-import DTO.DisplayClientDTO;
 import DTO.DisplayDogDTO;
 import DTO.UpdateDogDTO;
-import dogs.comparator.ClientNameComparator;
 import dogs.comparator.DogNameComparator;
 import dogs.model.Dog;
 import dogs.model.IClient;
@@ -48,7 +46,7 @@ public class DogController extends Controller implements IDogController {
 	//Fonctions qui appellent des vues
 	
 	public void showDisplayDogsView() {
-		super.showView(new DisplayDogView(this,this.getDogList()));
+		super.showView(new DisplayDogView(this,this.getDogListByName()));
 	}
 	
 	public void showAddDogsView() {

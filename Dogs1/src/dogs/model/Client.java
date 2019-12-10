@@ -31,9 +31,6 @@ public class Client implements IClient {
 		Client.currentClientNumber ++;
 	}
 	
-	public Client(Client client) {
-		this(client.getFirstName(), client.getLastName(), client.getPhoneNumber(), client.getId());
-	}
 	
 	public Client(CreateClientDTO client) {
 		this(client.FIRST_NAME, client.LAST_NAME, client.PHONE_NUMBER);
