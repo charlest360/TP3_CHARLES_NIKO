@@ -23,14 +23,11 @@ public class DisplayClientView extends View {
 	private static final String FIRST_NAME_LABEL = "Prénom";
 	private static final String PHONE_NUMBER_LABEL = "Téléphone";
 	
-	private List<DisplayClientDTO> clientList;
-	@SuppressWarnings("unused")
-	private IClientController controller; 	
+	private List<DisplayClientDTO> clientList;	
 	
 	
 	public DisplayClientView(IClientController controller, List<DisplayClientDTO> list) {
 		super(controller,VIEW_TITLE,DEFAULT_SIZE);
-		this.controller = controller;
 		this.clientList = list;
 		
 		this.setUpComponents();

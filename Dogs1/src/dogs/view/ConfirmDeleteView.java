@@ -39,7 +39,7 @@ public class ConfirmDeleteView extends DynamicView{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == CONFIRM_BUTTON_ACTION) {
 
-			this.controller.RemoveDog(this.dto);
+			this.controller.removeDog(this.dto);
 			
 		}
 		

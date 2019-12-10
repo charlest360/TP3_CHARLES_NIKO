@@ -3,7 +3,7 @@ package dogs.model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DogRepository {
+public class DogRepository implements IDogRepository {
 	
 	private Map<Integer,IDog> dogList = new HashMap<Integer,IDog>();
 	
@@ -14,5 +14,9 @@ public class DogRepository {
 	
 	public Map<Integer,IDog> getDogList() {
 		return this.dogList;
+	}
+
+	public void removeDog(int dogId) {
+		this.dogList.remove(dogId);
 	}
 }

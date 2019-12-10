@@ -3,19 +3,16 @@ package dogs.controller;
 
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import dogs.model.IViewSpy;
+
+import controller.mock.ControllerDummy;
+import dogs.model.ViewSpy;
 
 	public class ControllerTest {
-		
-		/*@Before
-		public void setUpSomething() {
-			//ANY_GRAND_CHALET = new GrandChalet();
-		}*/
 		
 		@Test 
 		public void GIVEN_aIViewAndControllerChildren_WHEN_callingShowViewInController_THEN_displayIsCalledInView() {		
 			//Arrange
-			IViewSpy view = new IViewSpy();
+			ViewSpy view = new ViewSpy();
 			Controller controller = new ControllerDummy();
 			//Act
 			controller.showView(view);

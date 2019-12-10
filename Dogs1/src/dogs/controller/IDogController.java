@@ -11,10 +11,10 @@ public interface IDogController extends IController {
 	public void showDisplayDogsView();
 	public void showAddDogsView();
 	public void addDog(CreateDogDTO dto);
+	public void getDogMatchId(String id);
+	public void saveDogChanges(UpdateDogDTO dto);
+	public void deleteDog(DeleteDogDTO dto);
+	public void removeDog(DeleteDogDTO dto);
 	public List<DisplayDogDTO> getDogList();
-	public void showDogMatchId(String id);
-	public void SaveDogChanges(UpdateDogDTO dto);
-	public void DeleteDog(DeleteDogDTO dto);
-	public void RemoveDog(DeleteDogDTO dto);
 	
 }

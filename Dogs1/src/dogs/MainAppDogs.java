@@ -1,6 +1,10 @@
 package dogs;
 
 import DataSeed.DataSeeder;
+import dogs.controller.ClientController;
+import dogs.controller.DogController;
+import dogs.controller.IClientController;
+import dogs.controller.IDogController;
 import dogs.controller.IWelcomeController;
 
 import dogs.controller.WelcomeController;
@@ -23,7 +27,10 @@ public class MainAppDogs {
 	}
 	
 	private void createControllers(DogRepository dogRepository,ClientRepository clientRepository) {
-		IWelcomeController appController = new WelcomeController(dogRepository,clientRepository);
+		IClientController clientController = new ClientController(clientRepository);
+		IDogController dogController = new DogController(dogRepository,clientRepository);
+		
+		IWelcomeController appController = new WelcomeController(clientController,dogController);
 		appController.startApplication();
 	}
 	

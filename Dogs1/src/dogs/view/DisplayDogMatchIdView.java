@@ -115,12 +115,12 @@ public class DisplayDogMatchIdView extends DynamicView {
 		
 		if(arg0.getActionCommand()== EDIT_DOG_ACTION) {
 			UpdateDogDTO dto = new UpdateDogDTO(this.dogToDisplay.ID,this.dogName.getText(),this.dogBreed.getText(),this.dogToDisplay.OWNER_ID);
-			this.controller.SaveDogChanges(dto);
+			this.controller.saveDogChanges(dto);
 		}
 		
 		if(arg0.getActionCommand()== DELETE_DOG_ACTION) {
 			DeleteDogDTO dto = new DeleteDogDTO(this.dogToDisplay.ID);
-			this.controller.DeleteDog(dto);
+			this.controller.deleteDog(dto);
 		}
 		
 	}

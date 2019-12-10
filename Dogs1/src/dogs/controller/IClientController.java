@@ -22,11 +22,13 @@ public interface IClientController extends IController {
 
 	public void addClient(CreateClientDTO dto);
 
-	public void showClientMatchId(String id);
+	public void getClientMatchId(String id);
+	
+	public void getClientMatchName(String name);
+	
+	public void saveClientChanges(UpdateClientDTO dto);
 
-	public void SaveClientChanges(UpdateClientDTO dto);
-
-	public void showClientsMatchName(String text);
+	
 	
 	
 	

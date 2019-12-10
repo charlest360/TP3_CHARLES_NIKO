@@ -23,13 +23,12 @@ public class DisplayDogView extends View {
 		private static final String OWNER_LAST_NAME_LABEL = "Nom du maitre";
 		
 		private List<DisplayDogDTO> dogList;
-		private IDogController controller; 	
 		
-		public DisplayDogView(IDogController controller) {
+		
+		public DisplayDogView(IDogController controller,List<DisplayDogDTO> dogList) {
 			
 			super(controller,VIEW_TITLE,DEFAULT_SIZE);
-			this.controller = controller;
-			this.dogList = this.controller.getDogList();
+			this.dogList = dogList;
 			
 			this.setUpComponents();
 		}

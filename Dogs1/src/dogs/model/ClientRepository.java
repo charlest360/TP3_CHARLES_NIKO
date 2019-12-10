@@ -3,7 +3,7 @@ package dogs.model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ClientRepository {
+public class ClientRepository implements IClientRepository {
 private Map<Integer,IClient> clientList = new HashMap<Integer,IClient>();
 	
 	

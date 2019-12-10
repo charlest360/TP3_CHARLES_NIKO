@@ -10,8 +10,8 @@ import DTO.UpdateClientDTO;
 import dogs.comparator.ClientNameComparator;
 import dogs.comparator.ClientPhoneComparator;
 import dogs.model.Client;
-import dogs.model.ClientRepository;
 import dogs.model.IClient;
+import dogs.model.IClientRepository;
 import dogs.view.AddClientConfirmationView;
 import dogs.view.ClientErrorMessageView;
 import dogs.view.AddClientView;
@@ -29,12 +29,14 @@ public class ClientController extends Controller implements IClientController {
 	private final static String CLIENT_EDITED_MESSAGE = "Client édité avec succès!";
 	
 	
-	private ClientRepository clientRepository;
+	private IClientRepository clientRepository;
 	
-	public ClientController(ClientRepository clientRepository) {
+	public ClientController(IClientRepository clientRepository) {
 		this.clientRepository = clientRepository;
 	}
 	
+	
+	//Fonctions qui appellent des vues
 	public void showDisplayClientByNameView() {
 		super.showView(new DisplayClientView(this,getClientListByName()));
 	}
@@ -47,6 +49,24 @@ public class ClientController extends Controller implements IClientController {
 		super.showView(new AddClientView(this));
 	}
 	
+	public void showClientConfirmationView(String message) {
+		super.showView(new AddClientConfirmationView(this,message));
+	}
+	
+	private void showClientErrorView(String errorMessage) {
+		super.showView(new ClientErrorMessageView(this,errorMessage));
+	}
+	
+	private void showClientMatchId(DisplayClientDTO dto) {
+		super.showView(new DisplayClientMatchIdView(this,dto));
+	}
+	
+	private void showClientMatchName (List<DisplayClientDTO> list) {
+		super.showView(new DisplayClientView(this,list));
+	}
+	
+	//Ajout et modification de client
+	
 	public void addClient(CreateClientDTO dto) {
 		
 		IClient client = new Client(dto);
@@ -56,6 +76,24 @@ public class ClientController extends Controller implements IClientController {
 			this.showClientConfirmationView(CLIENT_ADDED_MESSAGE);
 		}
 	}
+	
+	@Override
+	public void saveClientChanges(UpdateClientDTO dto) {
+		
+		IClient client = new Client(dto);
+		
+		if(this.validateFormInput(client)) {
+			IClient clientToEdit = this.clientRepository.getClientList().get(client.getId());
+			
+			clientToEdit.setFirstName(dto.FIRST_NAME);
+			clientToEdit.setLastName(dto.LAST_NAME);
+			clientToEdit.setPhoneNumber(dto.PHONE_NUMBER);
+			
+			this.showClientConfirmationView(CLIENT_EDITED_MESSAGE);
+		}
+	}
+	
+
 	
 	public List<DisplayClientDTO> getClientList() { 
 		List<DisplayClientDTO> list = new ArrayList<DisplayClientDTO>();
@@ -82,16 +120,16 @@ public class ClientController extends Controller implements IClientController {
 		
 		return list;
 	}
-
-	public void showClientConfirmationView(String message) {
-		super.showView(new AddClientConfirmationView(this,message));
-		
+	
+	public void getClientMatchId(String id) {
+		this.validateClientMatchIdDTO(Integer.valueOf(id));
 	}
 	
-	private void showClientErrorView(String errorMessage) {
-		super.showView(new ClientErrorMessageView(this,errorMessage));
-		
+	public void getClientMatchName(String name) {
+		this.validateClientMatchNameDTO(name);
 	}
+
+	//Fonctions validation
 
 	private boolean validateFormInput(IClient client) {
 		boolean isClientValid = false;
@@ -111,39 +149,20 @@ public class ClientController extends Controller implements IClientController {
 		return isClientValid;
 		
 	}
-
-	@Override
-	public void showClientMatchId(String id) {
+	
+	private void validateClientMatchIdDTO(int id) {
 		
-		int idNumber =Integer.valueOf(id);
-		
-		if (this.clientRepository.getClientList().containsKey(idNumber)) {
-			DisplayClientDTO clientDTO = new DisplayClientDTO( this.clientRepository.getClientList().get(idNumber));
-			super.showView(new DisplayClientMatchIdView(this,clientDTO));
+		if (this.clientRepository.getClientList().containsKey(id)) {
+			DisplayClientDTO clientDTO = new DisplayClientDTO( this.clientRepository.getClientList().get(id));
+			
+			this.showClientMatchId(clientDTO);
 		}
 		else {
 			this.showClientErrorView(NO_ID_MATCH_ERROR);
-		}
+		}	
 	}
-
-	@Override
-	public void SaveClientChanges(UpdateClientDTO dto) {
-		
-		IClient client = new Client(dto);
-		
-		if(this.validateFormInput(client)) {
-			IClient clientToEdit = this.clientRepository.getClientList().get(client.getId());
-			
-			clientToEdit.setFirstName(dto.FIRST_NAME);
-			clientToEdit.setLastName(dto.LAST_NAME);
-			clientToEdit.setPhoneNumber(dto.PHONE_NUMBER);
-			
-			this.showClientConfirmationView(CLIENT_EDITED_MESSAGE);
-		}
-	}
-
-	@Override
-	public void showClientsMatchName(String lastName) {
+	
+	private void validateClientMatchNameDTO(String lastName) {
 		
 		List<DisplayClientDTO> list = new ArrayList<DisplayClientDTO>();
 		
@@ -154,12 +173,11 @@ public class ClientController extends Controller implements IClientController {
 		});
 		
 		if (list.size()>0) {
-			super.showView(new DisplayClientView(this,list));
+			this.showClientMatchName(list);
 		}
 		else {
 			this.showClientErrorView(NO_NAME_MATCH_ERROR);
 		}
 	}
-	
 	
 }

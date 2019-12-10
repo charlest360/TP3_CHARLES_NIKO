@@ -100,7 +100,7 @@ public class DisplayClientMatchIdView extends DynamicView {
 		
 		if(arg0.getActionCommand()== EDIT_CLIENT_ACTION) {
 			UpdateClientDTO dto = new UpdateClientDTO(this.clientToDisplay.ID,this.clientFirstName.getText(),this.clientLastName.getText(),this.clientPhoneNumber.getText());
-			this.controller.SaveClientChanges(dto);
+			this.controller.saveClientChanges(dto);
 		}
 		
 	}
