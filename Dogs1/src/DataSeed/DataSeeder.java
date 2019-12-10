@@ -34,7 +34,7 @@ public class DataSeeder {
 		IDog dog1 = new Dog("Bobby","Corgi",client1);
 		IDog dog2 = new Dog ("Cyrice","Boxer",client5);
 		IDog dog3 = new Dog("Sylvie","Beagle",client4);
-		IDog dog4 = new Dog ("Sam","Shih tzu",client3);
+		IDog dog4 = new Dog ("Sam","Beagle",client3);
 		IDog dog5 = new Dog("Niko","Mastiff",client2);
 		IDog dog6 = new Dog("Charles","Border collie",client1);
 		
