@@ -21,7 +21,7 @@ import dogs.view.DisplayDogMatchIdView;
 
 
 public class DogController extends Controller implements IDogController {
-	
+	private final static String NO_BREED_MATCH_ERROR = "Auncun chien ne correspond à la race recherchée";
 	private final static String NO_OWNER_ID_MATCH_ERROR = "Aucun id de client ne corresponds à celui entré";
 	private final static String NO_ID_MATCH_ERROR ="Auncun chien ne correspond au id recherché";
 	private final static String NAME_ERROR ="Veuillez entrer un nom valide ";
@@ -127,6 +127,26 @@ public class DogController extends Controller implements IDogController {
 		});
 		
 		return list;
+	}
+	
+	public void showDogMatchBreed(String breed) {
+
+		List<DisplayDogDTO> dogList = this.getDogList();
+		List<DisplayDogDTO> dogToDisplayList = new ArrayList<DisplayDogDTO>();
+		
+		for(int i = 0; i< dogList.size();i++) {
+			if (dogList.get(i).BREED.equals(breed) ) {
+				dogToDisplayList.add(dogList.get(i));
+			}
+		}
+		
+		if (dogToDisplayList.size()>0){
+			super.showView(new DisplayDogView(this,dogToDisplayList));
+		}
+		else {
+			this.DogErrorMessageView(NO_BREED_MATCH_ERROR);
+		}
+		
 	}
 	
 	
