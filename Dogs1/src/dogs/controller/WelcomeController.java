@@ -16,42 +16,51 @@ public class WelcomeController extends Controller implements IWelcomeController 
 		super.showView(new WelcomeView(this));
 	}
 	
+
 	public void addDog() {
 		this.dogController.showAddDogsView();
 	}
-	
-	
+
 	public void viewDogs() {
 		this.dogController.showDisplayDogsView();		
 	}
+
+	@Override
+	public void viewClientsByName() {
+		this.clientController.showDisplayClientByNameView();
+		
+	}
 	
+	public void viewClientsByPhone() {
+		this.clientController.showDisplayClientByPhoneView();
+		
+	}
+
+	@Override
+	public void addClient() {
+		this.clientController.showAddClientsView();
+		
+	}
+	
+	@Override
+	public void searchClientById(String id) {
+		this.clientController.getClientMatchId(id);
+		
+	}
+
+	@Override
+	public void searchClientByName(String text) {
+		this.clientController.getClientMatchName(text);
+	}
+
 	@Override
 	public void searchDogById(String id) {
 		this.dogController.getDogMatchId(id);
 	}
 
 	@Override
-	public void viewClientsByName() {
-		this.clientController.showDisplayClientByNameView();
-	}
-	
-	public void viewClientsByPhone() {
-		this.clientController.showDisplayClientByPhoneView();
-	}
-
-	@Override
-	public void addClient() {
-		this.clientController.showAddClientsView();
-	}
-
-	@Override
-	public void searchClientById(String id) {
-		this.clientController.getClientMatchId(id);	
-	}
-
-	@Override
-	public void searchClientByName(String name) {
-		this.clientController.getClientMatchName(name);
+	public void searchDogByBreed(String breed) {
+		this.dogController.getDogMatchBreed(breed);
 	}
 
 	

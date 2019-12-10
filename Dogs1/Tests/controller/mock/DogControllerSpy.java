@@ -25,6 +25,12 @@ public class DogControllerSpy implements IDogController{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void getDogMatchBreed(String breed) {
+		//this.getDogMatchBreedWasCalled = true;
+		
+	}
 
 	@Override
 	public void addDog(CreateDogDTO dto) {
@@ -61,5 +67,7 @@ public class DogControllerSpy implements IDogController{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

@@ -16,5 +16,6 @@ public interface IDogController extends IController {
 	public void deleteDog(DeleteDogDTO dto);
 	public void removeDog(DeleteDogDTO dto);
 	public List<DisplayDogDTO> getDogList();
+	public void getDogMatchBreed(String breed);
 	
 }

@@ -58,4 +58,10 @@ public class DogControllerDummy implements IDogController {
 		return null;
 	}
 
+	@Override
+	public void getDogMatchBreed(String breed) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

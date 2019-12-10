@@ -65,6 +65,10 @@ public class DogController extends Controller implements IDogController {
 			super.showView(new DisplayDogMatchIdView(this,dto));
 	}
 	
+	public void showDogMatchBreed(List<DisplayDogDTO> dogList ) {
+		super.showView(new DisplayDogView(this,dogList));
+}
+	
 	@Override
 	public void deleteDog(DeleteDogDTO dto) {
 		super.showView(new ConfirmDeleteView(this,dto));
@@ -129,7 +133,7 @@ public class DogController extends Controller implements IDogController {
 		return list;
 	}
 	
-	public void showDogMatchBreed(String breed) {
+	public void getDogMatchBreed(String breed) {
 
 		List<DisplayDogDTO> dogList = this.getDogList();
 		List<DisplayDogDTO> dogToDisplayList = new ArrayList<DisplayDogDTO>();
@@ -142,6 +146,7 @@ public class DogController extends Controller implements IDogController {
 		
 		if (dogToDisplayList.size()>0){
 			super.showView(new DisplayDogView(this,dogToDisplayList));
+			this.showDogMatchBreed(dogToDisplayList);
 		}
 		else {
 			this.DogErrorMessageView(NO_BREED_MATCH_ERROR);
